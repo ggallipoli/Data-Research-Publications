@@ -1,0 +1,32 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+\noindent The folder "Codes and Data" contains the relevant matlab codes and data for the project "Unobservable Skill Dispersion and Comparative Advantage":
+
+\bigskip
+\noindent Matlab code:
+\begin{itemize}
+\item  "main.m" is the main body code that carries out the calibration, benchmark and counterfactural analysis. 
+\item  "equib.m" is the m-function that simulate the bilateral trade flows.
+\item  "TFP-A.m" is the m-function that compute the fundamental productivity A's using the score data.
+\end{itemize}
+
+\noindent Data:
+\begin{itemize}
+\item "X1.mat" bilateral trade flows data 
+\item "alpha.mat" consumption shares for the differentiated sectors
+\item "scores.mat'  raw data with a normalization
+\item "nrescore.mat" residual data with a normalization
+\item "W.mat"  weights of raw score data 
+\item "W-n.mat" weights of residual score data
+\item "L.mat"  population
+\item "lambda-new" lambda's calibrated by gamma=0.3,0.5 and 0.7 using wage or total compensation data 
+\end{itemize}
+\noindent Note that the data are sorted alphabetically by the name of countries and industries.
+
+\bigskip
+\noindent Results: results in the paper are saved in "total1.mat","total2.mat","total3.mat" for the cases of gamma=0.3,0.5 and 0.7 respectively.
+
+
+\end{document}
