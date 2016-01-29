@@ -1,0 +1,1907 @@
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART ONE(A):  PARAMETER ESTIMATION: SET OUT STARTING VALUES AND LOCALS */
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+new;
+
+library maxlik;
+#include maxlik.ext
+maxset;
+
+
+ 
+ load dat[7754,46] = JUL20DATB.raw;
+
+
+
+
+
+dataset = "NOVP" ;
+
+vnames = { yunemp dp lnfi  pedn1 pedn2 pedn3 pedn4 pedn5 pedn6 grd1 grd2 grd3 grd4 grds parpref pt1 pt2 pt3 pt4 avgread nfld pei ns nb pq sk mb ab bc native rural imm moves otpar lonemom lonedad female saved wght school hwkonetime tryhard neverlate page numsib monthb };
+
+call saved(dat,dataset,vnames);
+file = dataset;
+
+/*high school equations, observable component, constant first element*/
+thetahs = {
+
+} ;
+
+thetahs = thetahs' ;
+
+/*grade equation, observable component, constant first element*/
+thetagr = {
+
+
+} ;
+thetagr=thetagr';
+
+
+/*PISA equation, observable component, constant first element*/
+
+thetapsa = { 
+  } ;
+
+thetapsa=thetapsa';
+
+
+/*Homework equation, observable component, constant first element*/
+ 
+
+thetahw = {
+
+
+} ;
+
+thetahw=thetahw';
+
+
+/*tryhard  equation, observable component, constant first element*/
+thetath = { 
+
+ } ;
+thetath=thetath';
+
+
+/*factor locations cognative*/
+thetat = {  } ;
+/*factor locations non-cognative*/
+theta2 = { } ;
+
+
+/*probability weights*/
+
+thetap =  {
+
+ };
+
+thetap = thetap' ;
+
+/*sigma grades,sigma pisa*/
+
+thetas = {  } ;
+
+/*factor load on cognative theta in HS equation*/
+thetahsf = {};
+/*factor load on non-cognative theta in HS equation*/
+thetahs2 = {};
+/*factor load on cognative theta in GRADE equation*/
+thetagrf = {  } ;
+/*factor load on non-cognative theta in GRADE equation*/
+thetagr2 = { };
+/*factor load on non-cognative theta in homework equation*/
+thetahw2 = {  } ;
+
+
+theta0 = thetahs | thetahsf | thetahs2  |
+ thetagr| thetagrf | thetagr2  | 
+thetapsa | 
+thetahw |  thetahw2  |
+thetath |   
+ thetas | thetat | theta2 | thetap ;
+
+
+
+
+/*interval values*/
+
+
+i1 = 59 ;
+i2 = 69 ;
+i3 = 79 ;
+
+
+
+j1 = ;
+ j2 =   ;
+ j3 = ;
+
+
+
+
+
+
+
+/*****************************************************************************************************************/
+/*        */
+/*	DEFINE PARAMETERS     	 */
+/*        */
+/*****************************************************************************************************************/
+
+ 
+
+
+
+
+ 
+
+paramA = {  TL	 TH T2  PL1	 PH1 PL2	 PH2	PL3		 PH3	PL4		 PH4 PL5		 PH5	PL6		 PH6   PT21 PT22 PT23 PT24 PT25 PT26  };
+
+paramhs = {  g0 g0_fi g0_ed2 g0_ed3 g0_ed4 g0_ed5 g0_ed6  g0_east g0_pq g0_sk g0_mb  g0_ab  g0_bc g0_rur g0_mvs g0_ofam g0_nsib g0_bmon g0_unemp  g_t1 g_t2  }; 
+
+
+param1 = {    d10 g1_fi  g1_ed2 g1_ed3 g1_ed4 g1_ed5 g1_ed6 g1_east g1_pq  g1_sk g1_mb  g1_ab  g1_bc g1_rur g1_mvs g1_ofam g1_nsib g1_bmon g1_unemp    d1_t1 d1_t2 }; 
+
+param2 = {   d20  g2_ed2 g2_ed3 g2_ed4 g2_ed5 g2_ed6 g2_east g2_pq g2_sk g2_mb  g2_ab g2_bc g2_rur g2_mvs g2_ofam g2_bmon   } ;
+
+param5 = {  d50  g5_ed2 g5_ed3 g5_ed4 g5_ed5 g5_ed6 g5_east g5_pq g5_sk g5_mb  g5_ab g5_bc g5_rur g5_mvs g5_ofam g5_nsib g5_bmon d5_t2   } ;
+
+param7 = { d70  g7_ed2 g7_ed3 g7_ed4 g7_ed5 g7_ed6 g7_east g7_pq g7_sk g7_mb  g7_ab g7_bc g7_rur g7_mvs g7_ofam g7_nsib g7_bmon   } ;
+
+paramsig = {  s1 s2   };
+
+params = paramhs' |param1'|param2' | param5'|param7'| paramsig' | paramA' ;
+
+
+_max_parnames = params;
+
+/*clear param1, param2,  param3,param4, paramhs, paramA, paramsig;*/
+
+/*****************************************************************************************************************/
+
+hse = rows(thetahs) ;
+gt1 = hse+1 ;
+gt2 = gt1+1 ;
+e1s = gt2+1 ;
+e1e = e1s+rows(thetagr)-1 ;
+d1t1 = e1e+1 ;
+d1t2 = d1t1+1 ;
+e2s =d1t2+1;
+e2e = e2s+rows(thetapsa)-1 ;
+
+e5s =  e2e+1;
+e5e = e5s+rows(thetahw)-1 ;
+d5t2 =e5e+1 ;
+
+e7s =d5t2+1 ;
+e7e = e7s+rows(thetath)-1 ;
+
+s1f = e7e+1 ;
+s2f = s1f+1 ;
+t1lf = s2f+1;
+t1hf = t1lf+1 ;
+t2f = t1hf+1;
+pt1f =t2f+1;
+pt2f = pt1f+12;
+
+
+lf = rows(theta0);   
+
+
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART ONE(B):  PARAMETER ESTIMATION: DEFINE THE PROCDURE CALLED q  FOR THE OBJECTIVE  FUNCTION*/
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/*
+uncomment to do the check on gradient vector
+datin = dat ;
+proc q(theta);
+*/
+proc q(theta,datin);
+
+local prbt1,prbvp, mgrds, fii,fiii ;
+local parhs,pare11,pare12,pare13,pare14,pare21, pare22, pare23, pare24;
+local pare3,pare4;
+local dpfactors,lambda;
+local dpcont,lhood,inscont,cont;
+local dpi,gri1,gri2,gri3,psi1,psi2,psi3,nbi,ppi;
+local mm, n;
+local c0,c11,c12,c13,c14,c21,c22,c23,c24,c3,c4 ;
+local hs, grd1,grd2,grd3,grd4,pisa1, pisa2,pisa3,pisa4,ppref,savd ;
+local  vare1, vare2, vare3, vare4, hsvar ;
+local flhs, fl1, fl2, fl3, fl4,  p1, p2, p3, p4   ;
+local ped, fi, z1, lonepar, z2, t1,vp, sig1, sig2, sig4, probvec ;
+local tl, th, vl, vh, pl1, ph1, pl2, ph2, pl3, ph3, pl4, ph4, pvl1, pvh1, pvl2, pvh2, pvl3, pvh3, pvl4, pvh4, ed1, ed2, ed3,ed4  ;
+local pm1, pm2, pm3, pm4, pvm1, pvm2,pvm3, pvm4,ed5, ed6, pm5,pm6,pvm5,pvm6, pvl5,pvl6,pvh5,pvh6,ph5,ph6,pl5,pl6,plm1,plm2,plm3,plm4,plm5,plm6,tm ;
+local sig5, effpay , vare5, fl5, pare5, pt2, pt2h, t2h, sfi,c5, nc, efi ;
+local vare6,vare7, pare6,pare7, c6, c7 ;
+local hmwork, nvlate, trhard, hwi, nli, tri, fl6,fl7 ;
+local pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6, pt21, pt22, pt23, pt24, pt25, pt26 ;
+local nsib, yune, bmon,page ;
+/*
+run these lines if you want to look at bits and pieces of the likelihood
+datin = dat ;
+theta = theta0 ;
+*/
+
+n = rows(datin);
+
+/*sigmas*/
+
+sig1 = exp(theta[s1f]) ;
+
+sig2 = exp(theta[s2f]) ;
+
+
+/*outcomes*/
+
+hs = datin[.,2] ;
+
+
+
+grd1 = datin[.,10] ;
+grd2 = datin[.,11] ;
+grd3 = datin[.,12] ;
+grd4 = datin[.,13] ;
+
+pisa1 = datin[.,16] ;
+pisa2 = datin[.,17] ;
+pisa3 = datin[.,18] ;
+pisa4 = datin[.,19] ;
+
+
+hmwork = datin[.,41] ;
+
+trhard = datin[.,42] ;
+/*controls*/
+     
+
+ped = datin[.,5:9] ;
+
+ed1 = datin[.,4]; 
+ed2 = datin[.,5] ;  
+ed3 = datin[.,6]  ; 
+ed4 = datin[.,7]  ; 
+ed5 = datin[.,8]  ; 
+ed6 = datin[.,9]  ; 
+
+
+
+fi = dat[.,3] ;
+
+
+z1 = sumr(datin[.,21:24])~ datin[.,25:29] ~ datin[.,31] ;
+
+
+z2 = datin[.,33] ~ datin[.,35] + datin[.,36]  + datin[.,34];
+
+nsib = datin[.,45];
+yune =  datin[.,1] ;
+bmon = datin[.,46] ;
+page  = datin[.,44] ;
+
+hsvar = ones(n,1)~fi~ped~z1~z2~nsib~bmon~yune ;
+vare1 = ones(n,2)~fi~ped~z1~z2~nsib~bmon~yune ;
+vare2 = ones(n,2)~ped~z1~z2~bmon ;
+
+
+
+
+
+vare5 = ones(n,1)~ped~z1~z2~nsib~bmon ;
+vare7 = ones(n,1)~ped~z1~z2~nsib~bmon ;
+
+/*collect the parameter vectors*/
+
+/*The factors loads*/
+
+
+flhs = theta[gt1:gt2]   ;
+fl1 = theta[d1t1:d1t2]   ;
+fl2 = ones(1,1) |  zeros(1,1) ;
+fl5 = zeros(1,1)| theta[d5t2]  ;
+fl7 = zeros(1,1) | ones(1,1) ;
+
+
+
+parhs = theta[1:hse] | flhs ;
+
+
+
+
+pare11 = i1 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+pare12 = i2 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+pare13 = i3 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+
+
+pare21 = j1 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+pare22 = j2 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+pare23 = j3 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+
+
+pare5 = theta[e5s:e5e] | fl5 ;
+pare7 = theta[e7s:e7e] | fl7 ;
+
+/* Collect the probabilities*/
+
+
+
+pl1 =  exp(theta[pt1f])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]));
+ph1 =  exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])) ;
+pm1 = 1/( 1+ exp(theta[pt1f+1])+ exp(theta[pt1f])) ;
+
+pl2 =  exp(theta[pt1f+2])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2]));
+ph2 =  exp(theta[pt1f+3])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2])) ;
+pm2 = 1/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3])) ;
+
+pl3 =  exp(theta[pt1f+4])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]));
+ph3 =  exp(theta[pt1f+5])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+pm3 = 1/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+
+pl4 =  exp(theta[pt1f+6])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]));
+ph4 =  exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+pm4 = 1/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+
+pl5 =  exp(theta[pt1f+8])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]));
+ph5 =  exp(theta[pt1f+9])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+pm5 = 1/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+
+pl6 =  exp(theta[pt1f+10])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]));
+ph6 =  exp(theta[pt1f+11])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+pm6 = 1/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+
+
+
+pt2h1 =  cdfn(theta[pt2f]) ;
+pt21 =  1-pt2h1;
+
+pt2h2 =  cdfn(theta[pt2f+1]) ;
+pt22 =  1-pt2h2;
+
+pt2h3 =  cdfn(theta[pt2f+2]) ;
+pt23 =  1-pt2h3;
+
+pt2h4 =  cdfn(theta[pt2f+3]) ;
+pt24 =  1-pt2h4;
+
+pt2h5 =  cdfn(theta[pt2f+4]) ;
+pt25 =  1-pt2h5;
+
+pt2h6 =  cdfn(theta[pt2f+5]) ;
+pt26 =  1-pt2h6;
+
+
+
+
+probvec = 
+ph1*pt2h1*ed1+ph2*pt2h2*ed2+ph3*pt2h3*ed3+ph4*pt2h4*ed4+ph5*pt2h5*ed5+ph6*pt2h6*ed6~
+pl1*pt2h1*ed1+pl2*pt2h2*ed2+pl3*pt2h3*ed3+pl4*pt2h4*ed4+pl5*pt2h5*ed5+pl6*pt2h6*ed6~
+pm1*pt2h1*ed1+pm2*pt2h2*ed2+pm3*pt2h3*ed3+pm4*pt2h4*ed4+pm5*pt2h5*ed5+pm6*pt2h6*ed6~
+ph1*pt21*ed1+ph2*pt22*ed2+ph3*pt23*ed3+ph4*pt24*ed4+ph5*pt25*ed5+ph6*pt26*ed6~
+pl1*pt21*ed1+pl2*pt22*ed2+pl3*pt23*ed3+pl4*pt24*ed4+pl5*pt25*ed5+pl6*pt26*ed6~
+pm1*pt21*ed1+pm2*pt22*ed2+pm3*pt23*ed3+pm4*pt24*ed4+pm5*pt25*ed5+pm6*pt26*ed6 ;
+
+
+/*the factors*/
+th = theta[t1hf] ;
+tl = theta[t1lf] ;
+
+t2h = theta[t2f] ;
+
+dpfactors = th ~  tl~  zeros(1,1)  ~  th ~ tl~  zeros(1,1) |
+t2h.*.ones(1,3) ~ zeros(1,3) 
+ 
+ ;
+
+
+
+
+
+
+
+
+/****************************CONTRIBUTIONS*************************/
+
+
+/*first define the XB vectors*/
+
+
+dpi = zeros(n,6) ;
+
+gri1 = zeros(n,6) ;
+gri2 = zeros(n,6) ;
+gri3 = zeros(n,6) ;
+
+
+psi1 = zeros(n,6) ;
+psi2 = zeros(n,6) ;
+psi3 = zeros(n,6) ;
+
+
+
+
+hwi = zeros(n,6) ;
+tri = zeros(n,6) ;
+
+mm = 1 ;
+
+do until mm >6 ;
+
+dpi[.,mm] = ((hsvar~(ones(1,n).*.dpfactors[.,mm])')*parhs) ;
+gri1[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare11 ;
+gri2[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare12 ;
+gri3[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare13 ;
+
+psi1[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare21 ;
+psi2[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare22 ;
+psi3[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare23 ;
+
+hwi[.,mm] = ((vare5~(ones(1,n).*.dpfactors[.,mm])')*pare5) ; 
+tri[.,mm] = ((vare7~(ones(1,n).*.dpfactors[.,mm])')*pare7) ; 
+mm = mm + 1 ;
+
+endo ;
+
+
+
+
+/*put together the contributions*/
+
+c0 = (cdfn(dpi).^hs).*((1-cdfn(dpi)).^(1-hs)) ;
+
+
+c21 = cdfn(psi1/sig2).^pisa1 ;
+c22 = (cdfn(psi2/sig2)-cdfn(psi1/sig2)).^pisa2 ;
+c23 = (cdfn(psi3/sig2)-cdfn(psi2/sig2)).^pisa3 ;
+c24 = (1-cdfn(psi3/sig2)).^pisa4 ;
+
+c11 = cdfn(gri1/sig1).^grd1 ;
+c12 = (cdfn(gri2/sig1)-cdfn(gri1/sig1)).^grd2 ;
+c13 = (cdfn(gri3/sig1)-cdfn(gri2/sig1)).^grd3 ;
+c14 = (1-cdfn(gri3/sig1)).^grd4 ;
+
+c5 = (cdfn(hwi).^hmwork).*((1-cdfn(hwi)).^(1-hmwork)) ;
+c7 = (cdfn(tri).^trhard).*((1-cdfn(tri)).^(1-trhard)) ;
+
+
+
+
+inscont = c0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7;
+
+
+cont = (inscont.*probvec)*ones(6,1) ;
+
+
+
+lhood = ln(cont) ;
+
+
+
+retp(lhood);
+
+ 
+endp ;
+
+
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART ONE(c):  PARAMETER ESTIMATION: DEFINE THE GRADIENT PROCDURE CALLED fpq  */
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+
+proc fpq(theta,datin);
+
+
+local prbt1,prbvp, fii,fiii;
+local parhs,pare11,pare12,pare13,pare21, pare22, pare23;
+local pare3,pare4;
+local dpfactors,lambda;
+local dpcont,lhood,inscont,cont,mgrds;
+local dpi,gri1,gri2,gri3,psi1,psi2,psi3,nbi,ppi;
+local mm, n, dt1pa, dt2pa;
+local c0,c11,c12,c13,c14,c21,c22,c23,c24,c3,c4;
+local hs, grd1,grd2,grd3,grd4,ppref,savd, pt,pv ;
+local  vare1, vare2, vare3, vare4, hsvar,dt1l, dt1h, dt2l,dt2h ;
+local flhs, fl1, fl2, fl3, fl4,  p1, p2, p3, p4,pisa1,pisa2,pisa3,pisa4  ;
+local ped, fi, z1, lonepar, z2, t1,vp, sig1, sig2, probvec ;
+local tl, th, vl, vh, pl1, ph1, pl2, ph2, pl3, ph3, pl4, ph4, pvl1, pvh1, pvl2, pvh2, pvl3, pvh3, pvl4, pvh4, ed1, ed2, ed3,ed4  ;
+
+local dc11,dc12,dc13,dc14, grad, dc0, dc21,dc22,dc23,dc24, dc3, dc4, dt2p, dt1p, dt2, dt1, nn,dt21, dt11;
+local dplpl1, dphpl1, dpmpl1, dphph1, dpmph1,dplpl2, dphpl2, dpmpl2, dphph2, dpmph2, dplpl3, dphpl3, dpmpl3, dphph3, dpmph3, dplpl4, dphpl4, dpmpl4, dphph4, dpmph4 ;
+local dpvlpvl1, dpvhpvl1, dpvmpvl1, dpvhpvh1, dpvmpvh1, dpvlpvl2, dpvhpvl2, dpvmpvl2, dpvhpvh2, dpvmpvh2, dpvlpvl3, dpvhpvl3, dpvmpvl3, dpvhpvh3, dpvmpvh3, dpvlpvl4, dpvhpvl4, dpvmpvl4, dpvhpvh4, dpvmpvh4 ;
+local pm1, pm2, pm3, pm4, pvm1, pvm2,pvm3, pvm4,ed5, ed6, pm5,pm6,pvm5,pvm6, pvl5,pvl6,pvh5,pvh6,ph5,ph6,pl5,pl6 ;
+local dpvlpvl5, dpvhpvl5, dpvmpvl5, dpvhpvh5, dpvmpvh5,dpvlpvl6, dpvhpvl6, dpvmpvl6, dpvhpvh6, dpvmpvh6 ;
+local dplpl5, dphpl5, dpmpl5, dphph5, dpmph5, dplpl6, dphpl6, dpmpl6, dphph6, dpmph6,plm1,tm,dplmpl1,dphplm1,dpmplm1,dplmplm1 ;
+local plm2, plm3, plm4, plm5, plm6, dplmpl2,dphplm2,dpmplm2,dplmplm2,dplmpl3,dphplm3,dpmplm3,dplmplm3,dplmpl4,dphplm4,dpmplm4,dplmplm4;
+local dplmpl5,dphplm5,dpmplm5,dplmplm5,dplmpl6,dphplm6,dpmplm6,dplmplm6 ;
+local sig5, effpay , vare5, fl5, pare5, pt2, pt2h, t2h, sfi,c5, nc, efi ;
+local vare6,vare7, pare6,pare7, c6, c7 ;
+local hmwork, nvlate, trhard, hwi, nli, tri, fl6,fl7 ;
+local pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6, pt21, pt22, pt23, pt24, pt25, pt26,dvp,dvpp ;
+local dc5,dc6,dc7,dp2hd2h1,dp2hd2h2,dp2hd2h3,dp2hd2h4,dp2hd2h5,dp2hd2h6,dp2hd2l1,dp2hd2l2,dp2hd2l3,dp2hd2l4,dp2hd2l5,dp2hd2l6 ;
+
+
+local nsib, yune, bmon,page ;
+
+
+n = rows(datin);
+
+/*sigmas*/
+
+sig1 = exp(theta[s1f]) ;
+
+sig2 = exp(theta[s2f]) ;
+
+
+/*outcomes*/
+
+hs = datin[.,2] ;
+
+
+
+grd1 = datin[.,10] ;
+grd2 = datin[.,11] ;
+grd3 = datin[.,12] ;
+grd4 = datin[.,13] ;
+
+pisa1 = datin[.,16] ;
+pisa2 = datin[.,17] ;
+pisa3 = datin[.,18] ;
+pisa4 = datin[.,19] ;
+
+
+hmwork = datin[.,41] ;
+
+trhard = datin[.,42] ;
+/*controls*/
+     
+
+ped = datin[.,5:9] ;
+
+ed1 = datin[.,4]; 
+ed2 = datin[.,5] ;  
+ed3 = datin[.,6]  ; 
+ed4 = datin[.,7]  ; 
+ed5 = datin[.,8]  ; 
+ed6 = datin[.,9]  ; 
+
+
+
+fi = dat[.,3] ;
+
+
+z1 = sumr(datin[.,21:24])~ datin[.,25:29] ~ datin[.,31] ;
+
+
+z2 = datin[.,33] ~ datin[.,35] + datin[.,36]  + datin[.,34];
+
+nsib = datin[.,45];
+yune =  datin[.,1] ;
+bmon = datin[.,46] ;
+page  = datin[.,44] ;
+
+hsvar = ones(n,1)~fi~ped~z1~z2~nsib~bmon~yune ;
+vare1 = ones(n,2)~fi~ped~z1~z2~nsib~bmon~yune ;
+vare2 = ones(n,2)~ped~z1~z2~bmon ;
+
+
+
+
+
+vare5 = ones(n,1)~ped~z1~z2~nsib~bmon ;
+vare7 = ones(n,1)~ped~z1~z2~nsib~bmon ;
+
+/*collect the parameter vectors*/
+
+/*The factors loads*/
+
+
+flhs = theta[gt1:gt2]   ;
+fl1 = theta[d1t1:d1t2]   ;
+fl2 = ones(1,1) |  zeros(1,1) ;
+fl5 = zeros(1,1)| theta[d5t2]  ;
+fl7 = zeros(1,1) | ones(1,1) ;
+
+
+
+parhs = theta[1:hse] | flhs ;
+
+
+
+
+pare11 = i1 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+pare12 = i2 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+pare13 = i3 | -1.*theta[e1s:e1e] | -1.*fl1 ;
+
+
+pare21 = j1 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+pare22 = j2 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+pare23 = j3 | -1.*theta[e2s:e2e] | -1.*fl2 ;
+
+
+pare5 = theta[e5s:e5e] | fl5 ;
+pare7 = theta[e7s:e7e] | fl7 ;
+
+/* Collect the probabilities*/
+
+
+
+pl1 =  exp(theta[pt1f])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]));
+ph1 =  exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])) ;
+pm1 = 1/( 1+ exp(theta[pt1f+1])+ exp(theta[pt1f])) ;
+
+pl2 =  exp(theta[pt1f+2])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2]));
+ph2 =  exp(theta[pt1f+3])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2])) ;
+pm2 = 1/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3])) ;
+
+pl3 =  exp(theta[pt1f+4])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]));
+ph3 =  exp(theta[pt1f+5])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+pm3 = 1/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+
+pl4 =  exp(theta[pt1f+6])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]));
+ph4 =  exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+pm4 = 1/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+
+pl5 =  exp(theta[pt1f+8])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]));
+ph5 =  exp(theta[pt1f+9])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+pm5 = 1/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+
+pl6 =  exp(theta[pt1f+10])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]));
+ph6 =  exp(theta[pt1f+11])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+pm6 = 1/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+
+
+
+pt2h1 =  cdfn(theta[pt2f]) ;
+pt21 =  1-pt2h1;
+
+pt2h2 =  cdfn(theta[pt2f+1]) ;
+pt22 =  1-pt2h2;
+
+pt2h3 =  cdfn(theta[pt2f+2]) ;
+pt23 =  1-pt2h3;
+
+pt2h4 =  cdfn(theta[pt2f+3]) ;
+pt24 =  1-pt2h4;
+
+pt2h5 =  cdfn(theta[pt2f+4]) ;
+pt25 =  1-pt2h5;
+
+pt2h6 =  cdfn(theta[pt2f+5]) ;
+pt26 =  1-pt2h6;
+
+
+
+
+probvec = 
+ph1*pt2h1*ed1+ph2*pt2h2*ed2+ph3*pt2h3*ed3+ph4*pt2h4*ed4+ph5*pt2h5*ed5+ph6*pt2h6*ed6~
+pl1*pt2h1*ed1+pl2*pt2h2*ed2+pl3*pt2h3*ed3+pl4*pt2h4*ed4+pl5*pt2h5*ed5+pl6*pt2h6*ed6~
+pm1*pt2h1*ed1+pm2*pt2h2*ed2+pm3*pt2h3*ed3+pm4*pt2h4*ed4+pm5*pt2h5*ed5+pm6*pt2h6*ed6~
+ph1*pt21*ed1+ph2*pt22*ed2+ph3*pt23*ed3+ph4*pt24*ed4+ph5*pt25*ed5+ph6*pt26*ed6~
+pl1*pt21*ed1+pl2*pt22*ed2+pl3*pt23*ed3+pl4*pt24*ed4+pl5*pt25*ed5+pl6*pt26*ed6~
+pm1*pt21*ed1+pm2*pt22*ed2+pm3*pt23*ed3+pm4*pt24*ed4+pm5*pt25*ed5+pm6*pt26*ed6 ;
+
+
+/*the factors*/
+th = theta[t1hf] ;
+tl = theta[t1lf] ;
+
+t2h = theta[t2f] ;
+
+dpfactors = th ~  tl~  zeros(1,1)  ~  th ~ tl~  zeros(1,1) |
+t2h.*.ones(1,3) ~ zeros(1,3) 
+ 
+ ;
+
+
+
+
+
+
+
+
+/****************************CONTRIBUTIONS*************************/
+
+
+/*first define the XB vectors*/
+
+
+dpi = zeros(n,6) ;
+
+gri1 = zeros(n,6) ;
+gri2 = zeros(n,6) ;
+gri3 = zeros(n,6) ;
+
+
+psi1 = zeros(n,6) ;
+psi2 = zeros(n,6) ;
+psi3 = zeros(n,6) ;
+
+
+
+
+hwi = zeros(n,6) ;
+tri = zeros(n,6) ;
+
+mm = 1 ;
+
+do until mm >6 ;
+
+dpi[.,mm] = ((hsvar~(ones(1,n).*.dpfactors[.,mm])')*parhs) ;
+gri1[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare11 ;
+gri2[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare12 ;
+gri3[.,mm] = (vare1~(ones(1,n).*.dpfactors[.,mm])')*pare13 ;
+
+psi1[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare21 ;
+psi2[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare22 ;
+psi3[.,mm] = (vare2~(ones(1,n).*.dpfactors[.,mm])')*pare23 ;
+
+hwi[.,mm] = ((vare5~(ones(1,n).*.dpfactors[.,mm])')*pare5) ; ;
+tri[.,mm] = ((vare7~(ones(1,n).*.dpfactors[.,mm])')*pare7) ; ;
+mm = mm + 1 ;
+
+endo ;
+
+
+
+/*put together the contributions*/
+
+c0 = (cdfn(dpi).^hs).*((1-cdfn(dpi)).^(1-hs)) ;
+
+
+c21 = cdfn(psi1/sig2).^pisa1 ;
+c22 = (cdfn(psi2/sig2)-cdfn(psi1/sig2)).^pisa2 ;
+c23 = (cdfn(psi3/sig2)-cdfn(psi2/sig2)).^pisa3 ;
+c24 = (1-cdfn(psi3/sig2)).^pisa4 ;
+
+
+c11 = cdfn(gri1/sig1).^grd1 ;
+c12 = (cdfn(gri2/sig1)-cdfn(gri1/sig1)).^grd2 ;
+c13 = (cdfn(gri3/sig1)-cdfn(gri2/sig1)).^grd3 ;
+c14 = (1-cdfn(gri3/sig1)).^grd4 ;
+
+c5 = (cdfn(hwi).^hmwork).*((1-cdfn(hwi)).^(1-hmwork)) ;
+c7 = (cdfn(tri).^trhard).*((1-cdfn(tri)).^(1-trhard)) ;
+
+
+
+inscont = c0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7;
+
+
+cont = (inscont.*probvec)*ones(6,1) ;
+
+
+
+
+/******************************************************************************************/
+/******************************************************************************************/
+/* START DERIVATIVES HERE */
+/******************************************************************************************/
+/******************************************************************************************/
+
+/*put together the gradient vector which is n x p where p is the number of parameters which is 165 in our case*/
+
+/*put together the gradient vector which is n x p where p is the number of parameters which is 165 in our case*/
+
+grad = zeros(n,lf) ;
+
+/*drop out index parameters*/
+
+dc0 = pdfn(dpi).*(hs.*cdfn(dpi).^(hs-1).*(1-cdfn(dpi)).^(1-hs)-(1-hs).*cdfn(dpi).^(hs).*(1-cdfn(dpi)).^(-hs))  ;
+
+mm = 1 ;
+
+do until mm >hse ;
+
+ grad[.,mm] = (((hsvar[.,mm].*dc0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+mm = mm + 1 ;
+
+endo ;
+
+
+ grad[.,gt1] = ((((ones(n,1).*.dpfactors[1,.]).*dc0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+ grad[.,gt2] = ((((ones(n,1).*.dpfactors[2,.]).*dc0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+
+mm = e1s ;
+
+do until mm >e1e ;
+
+nn = mm - e1s+2 ;
+
+dc11 = (-1/sig1).*vare1[.,nn].*grd1.*pdfn(gri1/sig1).*cdfn(gri1/sig1).^(grd1-1) ;
+dc12 = (1/sig1).*vare1[.,nn].*grd2.*(cdfn(gri2/sig1)-cdfn(gri1/sig1)).^(grd2-1).*(pdfn(gri1/sig1)-pdfn(gri2/sig1)) ;
+dc13 = (1/sig1).*vare1[.,nn].*grd3.*(cdfn(gri3/sig1)-cdfn(gri2/sig1)).^(grd3-1).*(pdfn(gri2/sig1)-pdfn(gri3/sig1)) ;
+dc14 = (1/sig1).*vare1[.,nn].*grd4.*pdfn(gri3/sig1).*(1-cdfn(gri3/sig1)).^(grd4-1) ;  
+
+grad[.,mm] =((((dc11.*c12.*c13.*c14 + c11.*dc12.*c13.*c14+
+c11.*c12.*dc13.*c14 +c11.*c12.*c13.*dc14).*c0.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+mm = mm + 1 ;
+
+endo ;
+
+
+clear dc11, dc12, dc13,dc14 ;
+
+
+dc11 = (-1/sig1).*(ones(n,1).*.dpfactors[1,.]).*grd1.*pdfn(gri1/sig1).*cdfn(gri1/sig1).^(grd1-1) ;
+dc12 = (1/sig1).*(ones(n,1).*.dpfactors[1,.]).*grd2.*(cdfn(gri2/sig1)-cdfn(gri1/sig1)).^(grd2-1).*(pdfn(gri1/sig1)-pdfn(gri2/sig1)) ;
+dc13 = (1/sig1).*(ones(n,1).*.dpfactors[1,.]).*grd3.*(cdfn(gri3/sig1)-cdfn(gri2/sig1)).^(grd3-1).*(pdfn(gri2/sig1)-pdfn(gri3/sig1)) ;
+dc14 = (1/sig1).*(ones(n,1).*.dpfactors[1,.]).*grd4.*pdfn(gri3/sig1).*(1-cdfn(gri3/sig1)).^(grd4-1) ;  
+
+ grad[.,d1t1] = ((((dc11.*c12.*c13.*c14 + c11.*dc12.*c13.*c14+
+c11.*c12.*dc13.*c14 +c11.*c12.*c13.*dc14).*c0.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+clear dc11, dc12, dc13,dc14 ;
+
+dc11 = (-1/sig1).*(ones(n,1).*.dpfactors[2,.]).*grd1.*pdfn(gri1/sig1).*cdfn(gri1/sig1).^(grd1-1) ;
+dc12 = (1/sig1).*(ones(n,1).*.dpfactors[2,.]).*grd2.*(cdfn(gri2/sig1)-cdfn(gri1/sig1)).^(grd2-1).*(pdfn(gri1/sig1)-pdfn(gri2/sig1)) ;
+dc13 = (1/sig1).*(ones(n,1).*.dpfactors[2,.]).*grd3.*(cdfn(gri3/sig1)-cdfn(gri2/sig1)).^(grd3-1).*(pdfn(gri2/sig1)-pdfn(gri3/sig1)) ;
+dc14 = (1/sig1).*(ones(n,1).*.dpfactors[2,.]).*grd4.*pdfn(gri3/sig1).*(1-cdfn(gri3/sig1)).^(grd4-1) ;  
+
+ grad[.,d1t2] = ((((dc11.*c12.*c13.*c14 + c11.*dc12.*c13.*c14+
+c11.*c12.*dc13.*c14 +c11.*c12.*c13.*dc14).*c0.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+
+clear dc11, dc12, dc13,dc14 ;
+
+
+
+mm = e2s ;
+
+do until mm > e2e;
+
+nn = mm -e2s+2 ;
+
+dc21 = (-1/sig2).*vare2[.,nn].*pisa1.*pdfn(psi1/sig2).*cdfn(psi1/sig2).^(pisa1-1) ;
+dc22 = (1/sig2).*vare2[.,nn].*pisa2.*(cdfn(psi2/sig2)-cdfn(psi1/sig2)).^(pisa2-1).*(pdfn(psi1/sig2)-pdfn(psi2/sig2)) ;
+dc23 = (1/sig2).*vare2[.,nn].*pisa3.*(cdfn(psi3/sig2)-cdfn(psi2/sig2)).^(pisa3-1).*(pdfn(psi2/sig2)-pdfn(psi3/sig2)) ;
+dc24 = (1/sig2).*vare2[.,nn].*pisa4.*pdfn(psi3/sig2).*(1-cdfn(psi3/sig2)).^(pisa4-1) ; 
+
+grad[.,mm] =((((dc21.*c22.*c23.*c24+
+c21.*dc22.*c23.*c24+
+c21.*c22.*dc23.*c24+
+c21.*c22.*c23.*dc24).*c0.*c11.*c12.*c13.*c14.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+mm = mm + 1 ;
+
+clear dc21, dc22, dc23, dc24 ;
+
+endo ;
+
+
+
+/*local hmwork, nvlate, trhard, hwi, nli, tri, fl6,fl7 ;*/
+
+dc5 = pdfn(hwi).*(hmwork.*cdfn(hwi).^(hmwork-1).*(1-cdfn(hwi)).^(1-hmwork)-(1-hmwork).*cdfn(hwi).^(hmwork).*(1-cdfn(hwi)).^(-hmwork)) ;
+dc7 = pdfn(tri).*(trhard.*cdfn(tri).^(trhard-1).*(1-cdfn(tri)).^(1-trhard)-(1-trhard).*cdfn(tri).^(trhard).*(1-cdfn(tri)).^(-trhard)) ;
+
+mm = e5s ;
+
+do until mm > e5e ;
+
+nn = mm - e5s+1 ;
+ grad[.,mm] = (((vare5[.,nn].*c0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*dc5.*c7).*probvec)*ones(6,1))./cont ;
+
+mm = mm + 1 ;
+
+
+endo ;
+
+/*factor loading */
+
+ grad[.,d5t2] = ((((ones(n,1).*.dpfactors[2,.]).*c0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*dc5.*c7).*probvec)*ones(6,1))./cont ;
+
+
+mm = e7s ;
+
+do until mm > e7e ;
+
+nn = mm - e7s+1 ;
+ grad[.,mm] = (((vare7[.,nn].*c0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*dc7).*probvec)*ones(6,1))./cont ;
+
+mm = mm + 1 ;
+
+
+endo ;
+
+
+/*factor loading */
+
+
+
+
+dc11 = (-1/sig1).*grd1.*pdfn(gri1/sig1).*cdfn(gri1/sig1).^(grd1-1) ;
+dc12 = (1/sig1).*grd2.*(cdfn(gri2/sig1)-cdfn(gri1/sig1)).^(grd2-1).*(pdfn(gri1/sig1)-pdfn(gri2/sig1)) ;
+dc13 = (1/sig1).*grd3.*(cdfn(gri3/sig1)-cdfn(gri2/sig1)).^(grd3-1).*(pdfn(gri2/sig1)-pdfn(gri3/sig1)) ;
+dc14 = (1/sig1).*grd4.*pdfn(gri3/sig1).*(1-cdfn(gri3/sig1)).^(grd4-1) ;  
+
+dc0 = pdfn(dpi).*(hs.*cdfn(dpi).^(hs-1).*(1-cdfn(dpi)).^(1-hs)-(1-hs).*cdfn(dpi).^(hs).*(1-cdfn(dpi)).^(-hs))  ;
+
+dc21 = (-1/sig2).*pisa1.*pdfn(psi1/sig2).*cdfn(psi1/sig2).^(pisa1-1) ;
+dc22 = (1/sig2).*pisa2.*(cdfn(psi2/sig2)-cdfn(psi1/sig2)).^(pisa2-1).*(pdfn(psi1/sig2)-pdfn(psi2/sig2)) ;
+dc23 = (1/sig2).*pisa3.*(cdfn(psi3/sig2)-cdfn(psi2/sig2)).^(pisa3-1).*(pdfn(psi2/sig2)-pdfn(psi3/sig2)) ;
+dc24 = (1/sig2).*pisa4.*pdfn(psi3/sig2).*(1-cdfn(psi3/sig2)).^(pisa4-1) ; 
+
+
+
+/*derivatives on factors*/
+
+
+/*Cognative Skill Theta 1*/
+
+
+
+dt1 = ( (theta[gt1,.]).*dc0.*c11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7 +
+theta[d1t1,.].*c0.*dc11.*c12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7+
+theta[d1t1,.].*c0.*c11.*dc12.*c13.*c14.*c21.*c22.*c23.*c24.*c5.*c7+
+theta[d1t1,.].*c0.*c11.*c12.*dc13.*c14.*c21.*c22.*c23.*c24.*c5.*c7+
+theta[d1t1,.].*c0.*c11.*c12.*c13.*dc14.*c21.*c22.*c23.*c24.*c5.*c7+
+c0.*c11.*c12.*c13.*c14.*dc21.*c22.*c23.*c24.*c5.*c7+
+c0.*c11.*c12.*c13.*c14.*dc22.*c21.*c23.*c24.*c5.*c7+
+c0.*c11.*c12.*c13.*c14.*dc23.*c22.*c21.*c24.*c5.*c7+
+c0.*c11.*c12.*c13.*c14.*dc24.*c22.*c23.*c21.*c5.*c7 ) ;
+
+/* H M L 0 H M  L 0 H M L 0 H M  L 0 */
+/* H H H H H H H H  0 0 0 0 0 0 0 0 */
+/* H H H H  0 0 0 0  H H H H  0 0 0 0*/
+
+
+dt1p = dt1[.,1] ~ zeros(n,2)~ dt1[.,4] ~ zeros(n,2)  ;
+
+grad[.,t1hf] =((dt1p.*probvec)*ones(6,1))./cont ;
+
+clear dt1p ;
+
+
+dt1pa =  zeros(n,1)~ dt1[.,2]~ zeros(n,2) ~ dt1[.,5] ~   zeros(n,1) ;
+
+grad[.,t1lf] =((dt1pa.*probvec)*ones(6,1))./cont ;
+
+clear dt1pa ;
+
+
+
+dt2 = ((theta[gt2,.]).*dc0.*c11.*c12.*c13.*c14.*c5.*c7+
+theta[d1t2,.].*c0.*dc11.*c12.*c13.*c14.*c5.*c7+
+theta[d1t2,.].*c0.*c11.*dc12.*c13.*c14.*c5.*c7+
+theta[d1t2,.].*c0.*c11.*c12.*dc13.*c14.*c5.*c7+
+theta[d1t2,.].*c0.*c11.*c12.*c13.*dc14.*c5.*c7+
+theta[d5t2,.].*c0.*c11.*c12.*c13.*c14.*dc5.*c7+
+c0.*c11.*c12.*c13.*c14.*c5.*dc7).*c21.*c22.*c23.*c24 ;
+
+
+dt2p = dt2[.,1:3] ~zeros(n,3)  ;
+
+grad[.,t2f] =((dt2p.*probvec)*ones(6,1))./cont ;
+
+clear dt2p ;
+
+
+/*Derivatives on the probabilities*/
+
+/*
+pl1 =  exp(theta[pt1f])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])+ exp(theta[pt1f+2]));
+plm1 = exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])+ exp(theta[pt1f+2])) ;
+ph1 =  exp(theta[pt1f+2])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])+ exp(theta[pt1f+2])) ;
+pm1 = 1/( 1+ exp(theta[pt1f+1])+ exp(theta[pt1f])+ exp(theta[pt1f+2])) ;
+*/
+
+
+dplpl1 = pl1-pl1^2 ;
+dphpl1 = -exp(theta[pt1f])*exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]))^2 ;
+dpmpl1 = -exp(theta[pt1f])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]))^2 ;
+dphph1 =  ph1-ph1^2 ;
+dpmph1 = -exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]))^2 ;
+
+dplpl2 = pl2-pl2^2 ;
+dphpl2 = -exp(theta[pt1f+3])*exp(theta[pt1f+2])/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3]))^2 ;
+dpmpl2 = -exp(theta[pt1f+2])/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3]))^2 ;
+dphph2 =  ph2-ph2^2 ;
+dpmph2 = -exp(theta[pt1f+3])/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3]))^2 ;
+
+dplpl3 = pl3-pl3^2 ;
+dphpl3 = -exp(theta[pt1f+4])*exp(theta[pt1f+5])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]))^2 ;
+dpmpl3 = -exp(theta[pt1f+4])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]))^2 ;
+dphph3 =  ph3-ph3^2 ;
+dpmph3 = -exp(theta[pt1f+5])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]))^2 ;
+
+dplpl4 = pl4-pl4^2 ;
+dphpl4 = -exp(theta[pt1f+6])*exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]))^2 ;
+dpmpl4 = -exp(theta[pt1f+6])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]))^2 ;
+dphph4 =  ph4-ph4^2 ;
+dpmph4 = -exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]))^2 ;
+
+dplpl5 = pl5-pl5^2 ;
+dphpl5 = -exp(theta[pt1f+8])*exp(theta[pt1f+9])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]))^2 ;
+dpmpl5 = -exp(theta[pt1f+8])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]))^2 ;
+dphph5 =  ph5-ph5^2 ;
+dpmph5 = -exp(theta[pt1f+9])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]))^2 ;
+
+dplpl6 = pl6-pl6^2 ;
+dphpl6 = -exp(theta[pt1f+10])*exp(theta[pt1f+11])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]))^2 ;
+dpmpl6 = -exp(theta[pt1f+10])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]))^2 ;
+dphph6 =  ph6-ph6^2 ;
+dpmph6 = -exp(theta[pt1f+11])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]))^2 ;
+
+
+grad[.,pt1f] =  (
+inscont[.,1].*dphpl1.*ed1.*pt2h1+inscont[.,2].*dplpl1.*ed1.*pt2h1+inscont[.,3].*dpmpl1.*ed1.*pt2h1+
+inscont[.,4].*dphpl1.*ed1.*pt21+inscont[.,5].*dplpl1.*ed1.*pt21+inscont[.,6].*dpmpl1.*ed1.*pt21)./cont ;
+
+grad[.,pt1f+1] =  (
+inscont[.,1].*dphph1.*ed1.*pt2h1+inscont[.,2].*dphpl1.*ed1.*pt2h1+inscont[.,3].*dpmph1.*ed1.*pt2h1+
+inscont[.,4].*dphph1.*ed1.*pt21+inscont[.,5].*dphpl1.*ed1.*pt21+inscont[.,6].*dpmph1.*ed1.*pt21)./cont ;
+
+
+grad[.,pt1f+2] =  (
+inscont[.,1].*dphpl2.*ed2.*pt2h2+inscont[.,2].*dplpl2.*ed2.*pt2h2+inscont[.,3].*dpmpl2.*ed2.*pt2h2+
+inscont[.,4].*dphpl2.*ed2.*pt22+inscont[.,5].*dplpl2.*ed2.*pt22+inscont[.,6].*dpmpl2.*ed2.*pt22)./cont ;
+
+grad[.,pt1f+3] =  (
+inscont[.,1].*dphph2.*ed2.*pt2h2+inscont[.,2].*dphpl2.*ed2.*pt2h2+inscont[.,3].*dpmph2.*ed2.*pt2h2+
+inscont[.,4].*dphph2.*ed2.*pt22+inscont[.,5].*dphpl2.*ed2.*pt22+inscont[.,6].*dpmph2.*ed2.*pt22)./cont ;
+
+
+
+grad[.,pt1f+4] =  (
+inscont[.,1].*dphpl3.*ed3.*pt2h3+inscont[.,2].*dplpl3.*ed3.*pt2h3+inscont[.,3].*dpmpl3.*ed3.*pt2h3+
+inscont[.,4].*dphpl3.*ed3.*pt23+inscont[.,5].*dplpl3.*ed3.*pt23+inscont[.,6].*dpmpl3.*ed3.*pt23)./cont ;
+
+grad[.,pt1f+5] =  (
+inscont[.,1].*dphph3.*ed3.*pt2h3+inscont[.,2].*dphpl3.*ed3.*pt2h3+inscont[.,3].*dpmph3.*ed3.*pt2h3+
+inscont[.,4].*dphph3.*ed3.*pt23+inscont[.,5].*dphpl3.*ed3.*pt23+inscont[.,6].*dpmph3.*ed3.*pt23
+)./cont ;
+
+
+grad[.,pt1f+6] =  (
+inscont[.,1].*dphpl4.*ed4.*pt2h4+inscont[.,2].*dplpl4.*ed4.*pt2h4+inscont[.,3].*dpmpl4.*ed4.*pt2h4+
+inscont[.,4].*dphpl4.*ed4.*pt24+inscont[.,5].*dplpl4.*ed4.*pt24+inscont[.,6].*dpmpl4.*ed4.*pt24)./cont ;
+
+grad[.,pt1f+7] =  (
+inscont[.,1].*dphph4.*ed4.*pt2h4+inscont[.,2].*dphpl4.*ed4.*pt2h4+inscont[.,3].*dpmph4.*ed4.*pt2h4+
+inscont[.,4].*dphph4.*ed4.*pt24+inscont[.,5].*dphpl4.*ed4.*pt24+inscont[.,6].*dpmph4.*ed4.*pt24
+)./cont ;
+
+
+grad[.,pt1f+8] =  (
+inscont[.,1].*dphpl5.*ed5.*pt2h5+inscont[.,2].*dplpl5.*ed5.*pt2h5+inscont[.,3].*dpmpl5.*ed5.*pt2h5+
+inscont[.,4].*dphpl5.*ed5.*pt25+inscont[.,5].*dplpl5.*ed5.*pt25+inscont[.,6].*dpmpl5.*ed5.*pt25)./cont ;
+
+grad[.,pt1f+9] =  (
+inscont[.,1].*dphph5.*ed5.*pt2h5+inscont[.,2].*dphpl5.*ed5.*pt2h5+inscont[.,3].*dpmph5.*ed5.*pt2h5+
+inscont[.,4].*dphph5.*ed5.*pt25+inscont[.,5].*dphpl5.*ed5.*pt25+inscont[.,6].*dpmph5.*ed5.*pt25
+)./cont ;
+
+
+grad[.,pt1f+10] =  (
+inscont[.,1].*dphpl6.*ed6.*pt2h6+inscont[.,2].*dplpl6.*ed6.*pt2h6+inscont[.,3].*dpmpl6.*ed6.*pt2h6+
+inscont[.,4].*dphpl6.*ed6.*pt26+inscont[.,5].*dplpl6.*ed6.*pt26+inscont[.,6].*dpmpl6.*ed6.*pt26)./cont ;
+
+grad[.,pt1f+11] =  (
+inscont[.,1].*dphph6.*ed6.*pt2h6+inscont[.,2].*dphpl6.*ed6.*pt2h6+inscont[.,3].*dpmph6.*ed6.*pt2h6+
+inscont[.,4].*dphph6.*ed6.*pt26+inscont[.,5].*dphpl6.*ed6.*pt26+inscont[.,6].*dpmph6.*ed6.*pt26)./cont ;
+
+
+
+dp2hd2h1 = pdfn(theta[pt2f]) ;
+dp2hd2l1 = -pdfn(theta[pt2f]) ;
+dp2hd2h2 = pdfn(theta[pt2f+1]) ;
+dp2hd2l2 = -pdfn(theta[pt2f+1]) ;
+dp2hd2h3 = pdfn(theta[pt2f+2]) ;
+dp2hd2l3 = -pdfn(theta[pt2f+2]) ;
+dp2hd2h4 = pdfn(theta[pt2f+3]) ;
+dp2hd2l4 = -pdfn(theta[pt2f+3]) ;
+dp2hd2h5 = pdfn(theta[pt2f+4]) ;
+dp2hd2l5 = -pdfn(theta[pt2f+4]) ;
+dp2hd2h6 = pdfn(theta[pt2f+5]) ;
+dp2hd2l6 = -pdfn(theta[pt2f+5]) ;
+
+
+
+grad[.,pt2f] =  (
+inscont[.,1].*ed1.*ph1.*dp2hd2h1+inscont[.,2].*ed1.*pl1.*dp2hd2h1+inscont[.,3].*ed1.*pm1.*dp2hd2h1+
+inscont[.,4].*ed1.*ph1.*dp2hd2l1+inscont[.,5].*ed1.*pl1.*dp2hd2l1+inscont[.,6].*ed1.*pm1.*dp2hd2l1)./cont ;
+
+
+grad[.,pt2f+1] =  (
+inscont[.,1].*ed2.*ph2.*dp2hd2h2+inscont[.,2].*ed2.*pl2.*dp2hd2h2+inscont[.,3].*ed2.*pm2.*dp2hd2h2+
+inscont[.,4].*ed2.*ph2.*dp2hd2l2+inscont[.,5].*ed2.*pl2.*dp2hd2l2+inscont[.,6].*ed2.*pm2.*dp2hd2l2)./cont ;
+
+
+
+grad[.,pt2f+2] =  (
+inscont[.,1].*ed3.*ph3.*dp2hd2h3+inscont[.,2].*ed3.*pl3.*dp2hd2h3+inscont[.,3].*ed3.*pm3.*dp2hd2h3+
+inscont[.,4].*ed3.*ph3.*dp2hd2l3+inscont[.,5].*ed3.*pl3.*dp2hd2l3+inscont[.,6].*ed3.*pm3.*dp2hd2l3)./cont ;
+
+grad[.,pt2f+3] =  (
+inscont[.,1].*ed4.*ph4.*dp2hd2h4+inscont[.,2].*ed4.*pl4.*dp2hd2h4+inscont[.,3].*ed4.*pm4.*dp2hd2h4+
+inscont[.,4].*ed4.*ph4.*dp2hd2l4+inscont[.,5].*ed4.*pl4.*dp2hd2l4+inscont[.,6].*ed4.*pm4.*dp2hd2l4)./cont ;
+
+
+grad[.,pt2f+4] =  (
+inscont[.,1].*ed5.*ph5.*dp2hd2h5+inscont[.,2].*ed5.*pl5.*dp2hd2h5+inscont[.,3].*ed5.*pm5.*dp2hd2h5+
+inscont[.,4].*ed5.*ph5.*dp2hd2l5+inscont[.,5].*ed5.*pl5.*dp2hd2l5+inscont[.,6].*ed5.*pm5.*dp2hd2l5)./cont ;
+
+grad[.,pt2f+5] =  (
+inscont[.,1].*ed6.*ph6.*dp2hd2h6+inscont[.,2].*ed6.*pl6.*dp2hd2h6+inscont[.,3].*ed6.*pm6.*dp2hd2h6+
+inscont[.,4].*ed6.*ph6.*dp2hd2l6+inscont[.,5].*ed6.*pl6.*dp2hd2l6+inscont[.,6].*ed6.*pm6.*dp2hd2l6)./cont ;
+
+/*derivatives on the sigmas*/
+
+dc11 = (-gri1/sig1).*grd1.*pdfn(gri1/sig1).*cdfn(gri1/sig1).^(grd1-1) ;
+dc12 = (1/sig1).*grd2.*(cdfn(gri2/sig1)-cdfn(gri1/sig1)).^(grd2-1).*(pdfn(gri1/sig1).*gri1-pdfn(gri2/sig1).*gri2) ;
+dc13 = (1/sig1).*grd3.*(cdfn(gri3/sig1)-cdfn(gri2/sig1)).^(grd3-1).*(pdfn(gri2/sig1).*gri2-pdfn(gri3/sig1).*gri3) ;
+dc14 = (gri3/sig1).*grd4.*pdfn(gri3/sig1).*(1-cdfn(gri3/sig1)).^(grd4-1) ;  
+
+grad[.,s1f] =((((dc11.*c12.*c13.*c14 + c11.*dc12.*c13.*c14+
+c11.*c12.*dc13.*c14 +c11.*c12.*c13.*dc14).*c0.*c21.*c22.*c23.*c24.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+
+clear dc11, dc12, dc13,dc14 ;
+
+dc21 = -psi1/sig2.*pisa1.*pdfn(psi1/sig2).*cdfn(psi1/sig2).^(pisa1-1) ;
+dc22 = (1/sig2).*pisa2.*(cdfn(psi2/sig2)-cdfn(psi1/sig2)).^(pisa2-1).*(pdfn(psi1/sig2).*psi1-pdfn(psi2/sig2).*psi2) ;
+dc23 = (1/sig2).*pisa3.*(cdfn(psi3/sig2)-cdfn(psi2/sig2)).^(pisa3-1).*(pdfn(psi2/sig2).*psi2-pdfn(psi3/sig2).*psi3) ;
+dc24 = (psi3/sig2).*pisa4.*pdfn(psi3/sig2).*(1-cdfn(psi3/sig2)).^(pisa4-1) ; 
+
+grad[.,s2f] =((((dc21.*c22.*c23.*c24+
+c21.*dc22.*c23.*c24+
+c21.*c22.*dc23.*c24+
+c21.*c22.*c23.*dc24).*c0.*c11.*c12.*c13.*c14.*c5.*c7).*probvec)*ones(6,1))./cont ;
+
+clear dc21, dc22, dc23,dc24 ;
+
+
+
+retp(grad);
+endp;
+
+/*
+
+lines to Test analyt gradient again numeric gradient, comment out when running program
+ gg = fpq(theta0,datin) ;
+ng = gradp(&q,theta0) ;
+
+dg = gg-ng;*/
+
+/******************************************************************************************/
+/******************************************************************************************/
+/* END DERIVATIVES HERE */
+/******************************************************************************************/
+/******************************************************************************************/
+
+
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART ONE(d):  PARAMETER ESTIMATION: RUN MAXLIK USING THE DEFINED PROCEDURES */
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+
+_max_algorithm = 2 ;
+_max_linesearch = 2 ;
+_max_covpar = 2 ;
+__weight = dat[.,39]./meanc(dat[.,39]) ; 
+_max_MaxIters = 5000; 
+
+_max_GradProc = &fpq ; 
+
+{ theta, ff, g, h, rc } =maxlik(file,0,&q,theta0);
+
+
+output file = out/No_vp_1.txt  reset ; 
+
+call maxprt(theta, ff, g, h, rc  ) ;
+
+print theta;
+
+output off;
+
+
+
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART TWO:  ESTIMATE CLUSTERED VAR-COVAR MATRIX USING GRADIENT PROCEDURE AND ESTIAMTED PARAMETER VECTOR  */
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+
+
+datin = dat;
+theta0 = theta ;
+
+/*evaluate the gradient at the estimated parameter*/
+agrad = fpq(theta0,datin) ;
+
+k = rows(theta) ;
+school = dat[.,40] ;
+
+schind = seqa(1,1,maxc(school));
+
+schdum = dummy(school,schind) ;
+schdum = schdum[.,1:maxc(school)] ;
+
+cschm = sumc(schdum) ;
+
+
+nsc = maxc(school);
+
+
+insvar = zeros(nsc,k);
+
+
+numsch = 0 ;
+schi = 1 ;
+mm = 1 ;
+
+ do until mm > maxc(school) ;
+
+if cschm[mm,1] > 0 ;
+
+s = schi;
+e = s+cschm[mm]-1 ;
+
+gradx = sumc(agrad[s:e,.])' ;
+
+
+insvar[mm:mm,.] = gradx ;
+
+c = sumc(schdum[.,mm]) .> 0;
+numsch = numsch + c ;
+schi = schi+cschm[mm,.] ;
+endif ;
+
+mm = mm + 1 ;
+
+
+endo ;
+
+clusvar = diag(inv(agrad'*agrad)*(nsc/(nsc-1))*(insvar'insvar)*inv(agrad'*agrad));
+
+clusvarmat = inv(agrad'agrad)*(nsc/(nsc-1))*(insvar'insvar)*inv(agrad'agrad) ;
+
+ output file = out\NoVP_Var_1.txt reset ;  
+
+print clusvarmat;
+
+output off;
+
+
+coefout = theta~sqrt(clusvar) ;
+printco = _max_parnames ~ coefout ;
+pval = 0 ~ 1 ~ 1;
+ output file = out\NO_VP_results_1.txt reset ;  
+
+print "" "" ;
+print "" "" ;
+print "" "" ;
+
+print "Results from model without the parental valuation factor " ;
+print "coefficient clustered standard error" ;
+
+print "" "" ;
+print "" "" ;
+print "" "" ;
+
+outprint = printfmt(printco,pval);
+
+output off ;
+
+
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+/*                      PART THREE: CALCUATE MARGINAL EFFECTS AND PREDICTED VALUES AND THEIR STANDARD ERRORS                            */
+
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+/**************************************************************************************************************************************/
+
+
+datin = dat;
+
+
+
+load bx1[19,12]  = bx1.raw;
+load bx0[19,12]  = bx0.raw;
+
+theta0 = theta;
+
+/**************************************************************/
+
+/*--------------------------------(1)  A procedure that defines the marginals as a function of beta -------------------*/
+
+proc marg(theta);
+
+local nn,hsvar1,hsvar0, flhs, parhs,probvec, dpfactors,dpi0,dpi1,prob1, prob0, kk, marx, mm ;
+local  t2h, pt2h, pt2 ;
+local tl, th, vl, vh ;
+local pl1, pl2, pl3, pl4, pl5, pl6, ph1, ph2, ph3, ph4, ph5, ph6, pm1, pm2, pm3, pm4, pm5, pm6, pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6 ;
+local pt21, pt22, pt23, pt24, pt25, pt26, pvh1, pvh2, pvh3, pvh4, pvh5, pvh6, pvl1, pvl2, pvl3, pvl4, pvl5, pvl6,ed1,ed2,ed3,ed4,ed5,ed6 ;
+
+hsvar1 = bx1';
+hsvar0 = bx0';
+nn = rows(hsvar1);
+
+
+flhs = theta[gt1:gt2]   ;
+
+
+parhs = theta[1:hse] | flhs ;
+
+
+/* Collect the probabilities*/
+
+pl4 =  exp(theta[pt1f+6])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]));
+ph4 =  exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+pm4 = 1/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+
+
+
+
+pt2h4 =  cdfn(theta[pt2f+3]) ;
+pt24 =  1-pt2h4;
+
+probvec = 
+ph4*pt2h4~pl4*pt2h4~pm4*pt2h4~
+ph4*pt24~pl4*pt24~pm4*pt24;
+
+
+/*the factors*/
+th = theta[t1hf] ;
+tl = theta[t1lf] ;
+
+t2h = theta[t2f] ;
+
+dpfactors = th ~  tl~  zeros(1,1)  ~  th ~ tl~  zeros(1,1)   |
+t2h.*.ones(1,3) ~ zeros(1,3) 
+
+ ;
+
+
+
+
+/****************************CONTRIBUTIONS*************************/
+
+
+/*first define the XB vectors*/
+
+
+dpi0 = zeros(nn,6) ;
+dpi1 = zeros(nn,6) ;
+
+kk = 1 ;
+do until kk > nn ;
+
+mm = 1 ;
+
+do until mm >6 ;
+
+dpi0[kk,mm] = (hsvar0[kk,.]~dpfactors[.,mm]')*parhs ;
+dpi1[kk,mm] = (hsvar1[kk,.]~dpfactors[.,mm]')*parhs ;
+
+mm = mm + 1 ;
+
+endo ;
+
+kk = kk + 1 ;
+endo;
+
+prob1 = cdfn(dpi1)*probvec' ;
+prob0 = cdfn(dpi0)*probvec' ;
+
+
+marx =prob1-prob0 ;
+
+retp(marx);
+
+ 
+endp ;
+
+marginals = marg(theta0);
+
+D= gradp(&marg,theta0) ;
+
+VAR = D*clusvarmat*D' ;
+
+se = sqrt(diag(VAR));
+
+margout = marginals~se ;
+label = { fi	ped2	ped3 	ped4 	ped5 	ped6 			rural		moves	otfam	 nsib bmon yune } ;
+printmar = label' ~ margout ;
+pval = 0 ~ 1 ~ 1  ;
+outprint = printfmt(printmar,pval);
+
+
+
+
+
+/*--------------------------------(2)  A procedure that defines the predicted probabilities as a function of B -------------------*/
+
+
+
+proc predprod(theta);
+
+local nn,hsvar1,hsvar0, flhs, parhs,probvec, th,tl,tm,vh,dpfactors,dpi0,dpi1,prob1, prob0, kk, marx, mm, pp ;
+local pt2h, pt2 ;
+local t2h, predicted,predse ;
+local pl1, pl2, pl3, pl4, pl5, pl6, ph1, ph2, ph3, ph4, ph5, ph6, pm1, pm2, pm3, pm4, pm5, pm6, pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6 ;
+local pt21, pt22, pt23, pt24, pt25, pt26, pvh1, pvh2, pvh3, pvh4, pvh5, pvh6, pvl1, pvl2, pvl3, pvl4, pvl5, pvl6 ;
+
+local fi, z1,z2,nsib,yune, bmon, hsvar, dpi, ped, n ;
+
+n = rows(dat) ;
+fi = dat[.,3] ;
+
+z1 = sumr(datin[.,21:24])~ datin[.,25:29] ~ datin[.,31] ;
+
+
+z2 = datin[.,33] ~ datin[.,35] + datin[.,36]  + datin[.,34];
+
+ped = datin[.,5:9] ;
+
+nsib = datin[.,45];
+yune =  datin[.,1] ;
+bmon = datin[.,46] ;
+
+
+hsvar = ones(n,1)~fi~ped~z1~z2~nsib~bmon~yune ;
+
+
+
+
+flhs = theta[gt1:gt2]   ;
+
+parhs = theta[1:hse] | flhs ;
+
+
+
+/*the factors*/
+th = theta[t1hf] ;
+tl = theta[t1lf] ;
+
+t2h = theta[t2f] ;
+
+dpfactors = th ~  tl~  zeros(1,1)  ~  th ~ tl~  zeros(1,1)   |
+t2h.*.ones(1,3) ~ zeros(1,3) 
+
+ ;
+
+
+dpi = zeros(n,6) ;
+
+
+
+mm = 1 ;
+
+do until mm >6 ;
+
+dpi[.,mm] = ((hsvar~(ones(1,n).*.dpfactors[.,mm])')*parhs) ;
+
+
+mm = mm + 1 ;
+
+endo ;
+
+
+
+pp = cdfn(dpi)' ;
+
+retp(pp);
+
+ 
+endp ;
+
+ed1 = datin[.,4] ;
+ed2 = datin[.,5] ;
+ed3 = datin[.,6] ;
+ed4 = datin[.,7] ;
+ed5 = datin[.,8] ;
+ed6 = datin[.,9] ;
+
+predicted = predprod(theta0)' ;
+
+meanpred = meanc(selif(predicted,ed1)) ~  meanc(selif(predicted,ed2)) ~ meanc(selif(predicted,ed3))
+~ meanc(selif(predicted,ed4))~ meanc(selif(predicted,ed5))~ meanc(selif(predicted,ed6)) ;
+
+preddrop = 
+meanpred[1,.] | meanpred[3,.] | meanpred[2,.] |    /* HML  Cog H noncog */
+meanpred[4,.] | meanpred[6,.] | meanpred[5,.]    /*HML Cog L noncog */
+ 
+;
+
+/**********************************************Standard errors for predicted values **********************************/
+
+ii = 1 ;
+
+proc sepred(theta);
+
+
+local nn,hsvar1,hsvar0, flhs, parhs,probvec, th,tl,tm,vh,dpfactors,dpi0,dpi1,prob1, prob0, kk, marx, mm, pp ;
+local pt2h, pt2 ;
+local t2h, predicted,predse ;
+local pl1, pl2, pl3, pl4, pl5, pl6, ph1, ph2, ph3, ph4, ph5, ph6, pm1, pm2, pm3, pm4, pm5, pm6, pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6 ;
+local pt21, pt22, pt23, pt24, pt25, pt26, pvh1, pvh2, pvh3, pvh4, pvh5, pvh6, pvl1, pvl2, pvl3, pvl4, pvl5, pvl6 ;
+
+local fi, z1,z2,nsib,yune, bmon, hsvar, dpi, ped ;
+
+
+fi = dat[ii,3] ;
+
+
+z1 = sumr(datin[ii,21:24])~ datin[ii,25:29] ~ datin[ii,31] ;
+
+
+z2 = datin[ii,33] ~ datin[ii,35] + datin[ii,36]  + datin[ii,34];
+
+ped = datin[ii,5:9] ;
+nsib = datin[ii,45];
+yune =  datin[ii,1] ;
+bmon = datin[ii,46] ;
+
+
+hsvar = ones(1,1) ~ fi ~ ped ~ z1~z2~nsib~bmon~yune ;
+
+nn = rows(hsvar);
+
+
+flhs = theta[gt1:gt2]   ;
+
+parhs = theta[1:hse] | flhs ;
+
+
+
+/*the factors*/
+th = theta[t1hf] ;
+tl = theta[t1lf] ;
+
+t2h = theta[t2f] ;
+
+dpfactors = th ~  tl~  zeros(1,1)  ~  th ~ tl~  zeros(1,1)   |
+t2h.*.ones(1,3) ~ zeros(1,3) 
+
+ ;
+
+
+
+dpi = zeros(1,6) ;
+
+
+
+mm = 1 ;
+
+do until mm >6 ;
+
+dpi[.,mm] = ((hsvar~(dpfactors[.,mm])')*parhs) ;
+
+
+mm = mm + 1 ;
+
+endo ;
+
+
+
+pp = cdfn(dpi)' ;
+
+retp(pp);
+
+ 
+endp ;
+
+collectvar = zeros(rows(datin),6) ;
+
+ii = 1 ;
+
+do until ii > rows(datin) ;
+
+D = gradp(&sepred,theta0) ;
+
+VAR = D*clusvarmat*D' ;
+
+collectvar[ii,.] = diag(VAR)' ;
+
+ii = ii + 1 ;
+endo ;
+
+
+
+predse =
+(sqrt(sumc(selif(collectvar,ed1))./sumc(ed1))' |
+sqrt(sumc(selif(collectvar,ed2))./sumc(ed2))' |
+sqrt(sumc(selif(collectvar,ed3))./sumc(ed3))' |
+sqrt(sumc(selif(collectvar,ed4))./sumc(ed4))' |
+sqrt(sumc(selif(collectvar,ed5))./sumc(ed5))' |
+sqrt(sumc(selif(collectvar,ed6))./sumc(ed6))')' ;
+
+
+preddropse = 
+predse[1,.] | predse[3,.] | predse[2,.] |    /*HML Cog H noncog */
+predse[4,.] | predse[6,.] | predse[5,.]     /*HML Cog L noncog */
+;
+
+
+
+
+
+labelp = { H.H  M.H L.H  H.L  M.L L.L  } ;
+printmarp = labelp' ~ preddrop ;
+pvalp = 0 ~ 1 ~ 1~ 1~1~1~1;
+
+printmarpse = labelp' ~ preddropse ;
+
+
+/*--------------------------------(4)  A procedure that defines the probability weights as a function of B -------------------*/
+
+
+proc pdist(theta);
+
+local probvec, ppvec ;
+
+local t2h, predicted,predse ;
+local pl1, pl2, pl3, pl4, pl5, pl6, ph1, ph2, ph3, ph4, ph5, ph6, pm1, pm2, pm3, pm4, pm5, pm6, pt2h1, pt2h2, pt2h3, pt2h4, pt2h5, pt2h6 ;
+local pt21, pt22, pt23, pt24, pt25, pt26, pvh1, pvh2, pvh3, pvh4, pvh5, pvh6, pvl1, pvl2, pvl3, pvl4, pvl5, pvl6 ;
+
+
+
+pl1 =  exp(theta[pt1f])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1]));
+ph1 =  exp(theta[pt1f+1])/( 1+ exp(theta[pt1f])+ exp(theta[pt1f+1])) ;
+pm1 = 1/( 1+ exp(theta[pt1f+1])+ exp(theta[pt1f])) ;
+
+pl2 =  exp(theta[pt1f+2])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2]));
+ph2 =  exp(theta[pt1f+3])/( 1+ exp(theta[pt1f+3])+ exp(theta[pt1f+2])) ;
+pm2 = 1/( 1+ exp(theta[pt1f+2])+ exp(theta[pt1f+3])) ;
+
+pl3 =  exp(theta[pt1f+4])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5]));
+ph3 =  exp(theta[pt1f+5])/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+pm3 = 1/( 1+ exp(theta[pt1f+4])+ exp(theta[pt1f+5])) ;
+
+pl4 =  exp(theta[pt1f+6])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7]));
+ph4 =  exp(theta[pt1f+7])/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+pm4 = 1/( 1+ exp(theta[pt1f+6])+ exp(theta[pt1f+7])) ;
+
+pl5 =  exp(theta[pt1f+8])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9]));
+ph5 =  exp(theta[pt1f+9])/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+pm5 = 1/( 1+ exp(theta[pt1f+8])+ exp(theta[pt1f+9])) ;
+
+pl6 =  exp(theta[pt1f+10])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11]));
+ph6 =  exp(theta[pt1f+11])/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+pm6 = 1/( 1+ exp(theta[pt1f+10])+ exp(theta[pt1f+11])) ;
+
+
+
+pt2h1 =  cdfn(theta[pt2f]) ;
+pt21 =  1-pt2h1;
+
+pt2h2 =  cdfn(theta[pt2f+1]) ;
+pt22 =  1-pt2h2;
+
+pt2h3 =  cdfn(theta[pt2f+2]) ;
+pt23 =  1-pt2h3;
+
+pt2h4 =  cdfn(theta[pt2f+3]) ;
+pt24 =  1-pt2h4;
+
+pt2h5 =  cdfn(theta[pt2f+4]) ;
+pt25 =  1-pt2h5;
+
+pt2h6 =  cdfn(theta[pt2f+5]) ;
+pt26 =  1-pt2h6;
+
+
+
+
+
+ppvec = ph1 | pm1 | pl1  | pt2h1 | pt21 | 
+ph2 | pm2 | pl2  | pt2h2 | pt22 | 
+ph3 | pm3 | pl3  | pt2h3 | pt23 | 
+ph4 | pm4 | pl4  | pt2h4 | pt24 | 
+ph5 | pm5 | pl5  | pt2h5 | pt25 | 
+ph6 | pm6 | pl6  | pt2h6 | pt26 | 
+ph1*pt2h1 | pm1*pt2h1  | pl1*pt2h1 | ph1*pt21 | pm1*pt21  | pl1*pt21 | 
+ph2*pt2h2 | pm2*pt2h2  | pl2*pt2h2 | ph2*pt22 | pm2*pt22  | pl2*pt22 | 
+ph3*pt2h3 | pm3*pt2h3  | pl3*pt2h3 | ph3*pt23 | pm3*pt23  | pl3*pt23 | 
+ph4*pt2h4 | pm4*pt2h4  | pl4*pt2h4 | ph4*pt24 | pm4*pt24  | pl4*pt24 | 
+ph5*pt2h5 | pm5*pt2h5  | pl5*pt2h5 | ph5*pt25 | pm5*pt25  | pl5*pt25 | 
+ph6*pt2h6 | pm6*pt2h6  | pl6*pt2h6 | ph6*pt26 | pm6*pt26  | pl6*pt26 ;
+
+retp(ppvec);
+
+ 
+endp ;
+
+ppval = pdist(theta0);
+
+ D = gradp(&pdist,theta0) ;
+
+VAR = D*clusvarmat*D' ;
+ppvalse =sqrt(diag(VAR));
+
+/*change the order here, so the labels are intuitive*/
+
+margpp = ppval[1:5,.]'  |  ppvalse[1:5,.]'   |
+ppval[6:10,.]' |  ppvalse[6:10,.]' | 
+ppval[11:15,.]' |  ppvalse[11:15,.]' |
+ppval[16:20,.]' |  ppvalse[16:20,.]' |
+ppval[21:25,.]' |  ppvalse[21:25,.]' |
+ppval[26:30,.]' |  ppvalse[26:30,.]' 
+ ;
+
+jointpp = ppval[31:36,.]' |  ppvalse[31:36,.]' | 
+ppval[37:42,.]' |  ppvalse[37:42,.]' | 
+ppval[43:48,.]' |  ppvalse[43:48,.]' |
+ppval[49:54,.]' |  ppvalse[49:54,.]' |
+ppval[55:60,.]' |  ppvalse[55:60,.]' |
+ppval[61:66,.]' |  ppvalse[61:66,.]'  ;
+
+
+pvalpm = 0 ~ 1 ~ 1~ 1 ~ 1~ 1 ;
+pvalpj = 0 ~ 1 ~ 1~ 1 ~ 1~ 1 ~1;
+labelp = { BA BA.SE MixBA MixBA.SE PSE PSE.SE HS HS.SE   MixHS MixHS.SE   LTHS LTHS.SE } ;
+
+printdistj = labelp' ~ jointpp ;
+
+printdistm = labelp' ~ margpp ;
+
+
+output file = out\No_vp_marginals_1.txt reset ; 
+
+/*--------------------------------(4)  Print the output-------------------*/
+
+
+let frmt[7,3] = 
+ "-*.*s"  8 8
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+;  
+
+
+let frmtj[7,3] = 
+ "-*.*s"  4 4
+"*.*lf" 6 3
+"*.*lf" 6 3
+"*.*lf" 6 3
+"*.*lf" 6 3
+"*.*lf" 6 3
+"*.*lf" 6 3
+
+
+;  
+
+
+let frmtm[6,3] = 
+ "-*.*s"  8 8
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+"*.*lf" 10 5
+
+;  
+
+let frmtx[9,3] = 
+ "-*.*s"  8 8
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+"*.*lf" 7 3
+;  
+
+
+print "MODEL WITH ONLY COGNITIVE SKILLS AND NON-COGNITIVE SKILLS" ;
+print " " ;
+print "PROB WEIGHTS  VARY BY PARENTAL EDUCATION" ;
+print "6 EDUCATIONAL CATEGORIES " ;
+print "MARGINAL EFFECTS EVALUATED AT THE MEAN CHARACTERISTICS OF THE TWO HIGH SCHOOL FAMILIES " ;
+print "WITH THE UNOBSERVABLE DISTRIBUTIONS OF THE TWO HIGH SCHOOL FAMILIES" ;
+print "PREDICTED PROBABILITIES EVALUATED AT EACH INDIVIDUALS X'S " ;
+print " " ;
+print " " ;
+print " " ;
+print " " ;
+
+print "Marginal effects and SE clustered " ;
+print " " ;
+print " " ;
+outprint = printfmt(printmar,pval);
+
+print " " ;
+print " " ;
+print " " ;
+print "***************************************************************" ;
+print " " ;
+print " " ;
+print " " ;
+
+print "PREDICTED VALUES" ;
+print "PARENTAL EDUCATION IN THE COLUMNS" ;
+print "BA, BA-MIX, PSE-MIX, HS, HS-MIX, LTHS" ;
+print " " ;
+print " " ;
+outprint = printfm(printmarp,pvalp,frmt);
+
+print " " ;
+print " " ;
+print " " ;
+print "***************************************************************" ;
+
+
+print "STANDARD ERRORS FOR PREDICTED VALUES" ;
+print "PARENTAL EDUCATION IN THE COLUMNS" ;
+print "BA, BA-MIX, PSE-MIX, HS, HS-MIX, LTHS" ;
+print " " ;
+print " " ;
+outprint = printfm(printmarpse,pvalp,frmt);
+
+print " " ;
+print " " ;
+print " " ;
+print "***************************************************************" ;
+
+print "Marginal probability distributions and standard errors" ;
+print " H.CA M.CA L.CA  H.NC L.NC  " ;
+print " " ;
+print " " ;
+outprint = printfm(printdistm,pvalpm,frmtm);
+
+print " " ;
+print " " ;
+print " " ;
+print "***************************************************************" ;
+
+print "Joint probability distributions and standard errors" ;
+print "  H.H  M.H L.H H.L M.L L.L   " ;
+print " " ;
+print " " ;
+
+outprint = printfm(printdistj,pvalpj,frmtj);
+
+print " " ;
+print " " ;
+print " " ;
+print "***************************************************************" ;
+
+
+output off ;

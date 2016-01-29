@@ -1,0 +1,1133 @@
+global todfile "22JUN07"
+global dir "k:\green_yits\dropouts\readonlydata\may 28 2007"
+
+
+use "k:\green_yits\dropouts\readonlydata\may 28 2007\raw from sas 28may2007.dta", clear
+
+/*****************create PISA count var*****************************/
+
+local a2 famstruc
+local a3 st03q01
+local a4 st04q01
+local a5 st04q02
+local a6 st04q03
+local a7 st04q04
+local a8 st04q05
+local a9 st04q06
+local a10 st04q07
+local a11 st04q08
+local a12 st05q01
+local a13 st05q02
+local a14 st05q03
+local a15 st06q01
+local a16 st07q01
+local a17 st12q01
+local a18 st13q01
+local a19 st14q01
+local a20 st15q01
+local a21 st16q01
+local a22 st16q02
+local a23 st16q03
+local a24 st17q01
+local a25 st18q01
+local a26 st18q02
+local a27 st18q03
+local a28 st18q04
+local a29 st18q05
+local a30 st18q06
+local a31 st19q01
+local a32 st19q02
+local a33 st19q03
+local a34 st19q04
+local a35 st19q05
+local a36 st19q06
+local a37 st20q01
+local a38 st20q02
+local a39 st20q03
+local a40 st20q04
+local a41 st20q05
+local a42 st20q06
+local a43 st21q01
+local a44 st21q02
+local a45 st21q03
+local a46 st21q04
+local a47 st21q05
+local a48 st21q06
+local a49 st21q07
+local a50 st21q08
+local a51 st21q09
+local a52 st21q10
+local a53 st21q11
+local a54 st22q01
+local a55 st22q02
+local a56 st22q03
+local a57 st22q04
+local a58 st22q05
+local a59 st22q06
+local a60 st22q07
+local a61 st23q01
+local a62 st23q02
+local a63 st23q03
+local a64 st23q04
+local a65 st24q01
+local a66 st24q02
+local a67 st24q03
+local a68 st24q04
+local a69 st24q05
+local a70 st24q06
+local a71 st24q07
+local a72 st25q01
+local a73 st26q01
+local a74 st26q02
+local a75 st26q03
+local a76 st26q04
+local a77 st26q05
+local a78 st26q06
+local a79 st26q07
+local a80 st26q08
+local a81 st26q09
+local a82 st26q10
+local a83 st26q11
+local a84 st26q12
+local a85 st26q13
+local a86 st26q14
+local a87 st26q15
+local a88 st26q16
+local a89 st26q17
+local a90 st27q02
+local a91 st27q04
+local a92 st27q06
+local a93 st29q01
+local a94 st29q02
+local a95 st29q03
+local a96 st30q01
+local a97 st30q02
+local a98 st30q03
+local a99 st30q04
+local a100 st30q05
+local a101 st31q01
+local a102 st31q02
+local a103 st31q03
+local a104 st31q04
+local a105 st31q05
+local a106 st31q06
+local a107 st31q07
+local a108 st31q08
+local a109 st32q01
+local a110 st32q02
+local a111 st32q03
+local a112 st32q04
+local a113 st32q05
+local a114 st32q06
+local a115 st32q07
+local a116 st33q01
+local a117 st33q02
+local a118 st33q03
+local a119 st34q01
+local a120 st35q01
+local a121 st35q02
+local a122 st35q03
+local a123 st35q04
+local a124 st35q05
+local a125 st35q06
+local a126 st35q07
+local a127 st35q08
+local a128 st35q09
+local a129 st36q01
+local a130 st36q02
+local a131 st36q03
+local a132 st36q04
+local a133 st36q05
+local a134 st36q06
+local a135 st38q01
+local a136 st39q01
+local a137 st39q02
+local a138 st39q03
+local a139 st39q04
+local a140 st39q05
+local a141 st41q04
+local a142 st41q05
+local a143 st41q06
+local a144 it01q01
+local a145 it01q02
+local a146 it01q03
+local a147 it01q04
+local a148 it02q01
+local a149 it02q02
+local a150 it02q03
+local a151 it03q01
+local a152 it04q01
+local a153 it04q02
+local a154 it04q03
+local a155 it04q04
+local a156 it05q01
+local a157 it05q02
+local a158 it05q03
+local a159 it05q04
+local a160 it06q01
+local a161 it06q02
+local a162 it06q03
+local a163 it06q04
+local a164 it06q05
+local a165 it07q01
+local a166 it08q01
+local a167 it09q01
+local a168 it10q01
+
+local a169 st02q01
+local a170 st28q01
+local a171  st37q01
+local a172 st28q03
+local a173  st28q02
+local a174 st27q01
+local a175 st27q05
+
+local a177 st01q01
+local a178 st09q01
+local a179 st11q01
+
+ 
+
+gen pisacount = 0 
+forval i =2(1)175 {
+
+replace pisacount = pisacount + 1 if `a`i'' == "M"
+}
+
+
+replace pisacount = pisacount + 1 if `a177' == 99
+
+
+forval i = 178(1)179 {
+
+replace pisacount = pisacount + 1 if `a`i'' == 9999
+}
+
+
+/******************************************Create other vars May 28**************************************************************/
+
+
+
+
+
+
+
+
+local par mom 
+gen `par'edcat22 =  pe1b  if mother == 1 & pe1a == 2 & pe1b < 11
+replace  `par'edcat22 =  pe1c + 10  if mother == 1 & pe1a == 1 & pe1c < 12
+replace  `par'edcat22 =  pe2b  if mother == 0 & pe2a == 2  & pe2b < 11
+replace  `par'edcat22 =  pe2c + 10  if mother == 0 & pe2a == 1 & pe2c < 12
+replace  `par'edcat22 =  22  if `par'edcat22 == .
+
+
+local par dad 
+gen `par'edcat22 =  pe1b  if mother == 0 & pe1a == 2 & pe1b < 11
+replace  `par'edcat22 =  pe1c + 10  if mother == 0 & pe1a == 1 & pe1c < 12
+replace  `par'edcat22 =  pe2b  if mother == 1 & pe2a == 2  & pe2b < 11
+replace  `par'edcat22 =  pe2c + 10  if mother == 1 & pe2a == 1 & pe2c < 12
+replace  `par'edcat22 =  22  if `par'edcat22 == .
+
+local ncat 21
+local par mom
+gen `par'edcat`ncat' = `par'edcat22
+replace   `par'edcat`ncat' = .  if  `par'edcat22 == 11
+replace   `par'edcat`ncat' = `par'edcat22 - 1  if `par'edcat22 > 11
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat22
+replace   `par'edcat`ncat' = .  if  `par'edcat22 == 11
+replace   `par'edcat`ncat' = `par'edcat22 - 1  if `par'edcat22 > 11
+
+
+local ncat 18
+local par mom
+gen `par'edcat`ncat' = `par'edcat21  if  `par'edcat21 < 14
+replace   `par'edcat`ncat' = 13  if  `par'edcat21 == 14
+replace   `par'edcat`ncat' = `par'edcat21 - 1  if  `par'edcat21 >= 15 & `par'edcat21 <= 18
+replace   `par'edcat`ncat' = 17  if  `par'edcat21 == 19
+replace   `par'edcat`ncat' = 18  if  `par'edcat21 == 20 | `par'edcat21 == 21 
+
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat21  if  `par'edcat21 < 14
+replace   `par'edcat`ncat' = 13  if  `par'edcat21 == 14
+replace   `par'edcat`ncat' = `par'edcat21 - 1  if  `par'edcat21 >= 15 & `par'edcat21 <= 18
+replace   `par'edcat`ncat' = 17  if  `par'edcat21 == 19
+replace   `par'edcat`ncat' = 18  if  `par'edcat21 == 20 | `par'edcat21 == 21 
+
+
+
+
+
+
+local ncat 9
+local par mom
+gen `par'edcat`ncat' = `par'edcat18 - 9  if  `par'edcat18 > 11
+replace   `par'edcat`ncat' = 1  if  `par'edcat18  <= 9
+replace   `par'edcat`ncat' = 2  if  `par'edcat18  == 10 |`par'edcat18  == 11
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat18 - 9  if  `par'edcat18 > 11
+replace   `par'edcat`ncat' = 1  if  `par'edcat18  <= 9
+replace   `par'edcat`ncat' = 2  if  `par'edcat18  == 10 |`par'edcat18  == 11
+
+
+
+local ncat 6
+local par mom
+gen `par'edcat`ncat' = `par'edcat9   if  `par'edcat9 < 5
+replace   `par'edcat`ncat' = 4  if  `par'edcat9  == 5
+replace   `par'edcat`ncat' = 5  if  `par'edcat9  == 6 | `par'edcat9  == 7 | `par'edcat9  == 8
+replace   `par'edcat`ncat' = 6  if  `par'edcat9  == 9
+
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat9   if  `par'edcat9 < 5
+replace   `par'edcat`ncat' = 4  if  `par'edcat9  == 5
+replace   `par'edcat`ncat' = 5  if  `par'edcat9  == 6 | `par'edcat9  == 7 | `par'edcat9  == 8
+replace   `par'edcat`ncat' = 6  if  `par'edcat9  == 9
+
+
+
+local ncat 5
+local par mom
+gen `par'edcat`ncat' = `par'edcat9   if  `par'edcat6 < 4
+replace   `par'edcat`ncat' = 3  if  `par'edcat6  == 4
+replace   `par'edcat`ncat' = 4  if  `par'edcat6  == 5
+replace   `par'edcat`ncat' = 5  if  `par'edcat6  == 6
+
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat6   if  `par'edcat6 < 4
+replace   `par'edcat`ncat' = 3  if  `par'edcat6  == 4
+replace   `par'edcat`ncat' = 4  if  `par'edcat6  == 5
+replace   `par'edcat`ncat' = 5  if  `par'edcat6  == 6
+
+
+
+
+local ncat 4
+local par mom
+gen `par'edcat`ncat' = `par'edcat6   if  `par'edcat6 < 4
+replace   `par'edcat`ncat' = 3  if  `par'edcat6  == 4 | `par'edcat6  == 5 
+replace   `par'edcat`ncat' = 4  if  `par'edcat6  == 6
+
+
+
+local par dad
+gen `par'edcat`ncat' = `par'edcat6   if  `par'edcat6 < 4
+replace   `par'edcat`ncat' = 3  if  `par'edcat6  == 4 | `par'edcat6  == 5 
+replace   `par'edcat`ncat' = 4  if  `par'edcat6  == 6
+
+
+
+
+
+forval i = 1(1)5 {
+xtile readtile`i' = pv`i'read, nq(4)
+}
+
+xtile  inctile =  p1pfamincom, nq(4)
+
+
+forval i = 1(1)4 {
+forval j = 1(1)5 {
+
+gen readtile`j'_`i' = readtile`j' == `i'
+}
+}
+
+gen studyhrs = 0 if ysa6 == 1
+replace studyhrs = 1 if ysa6 == 2
+replace studyhrs = 2 if ysa6 == 3
+replace studyhrs = 5.5 if ysa6 == 4
+replace studyhrs = 11 if ysa6 == 5
+replace studyhrs = 15 if ysa6 == 6
+
+
+gen grdes = 95 if  y1sovgr9t100 == 1
+replace grdes = 85 if  y1sovgr80t89  == 1
+replace grdes = 75 if  y1sovgr70t79  == 1
+replace grdes = 65 if  y1sovgr60t69  == 1
+replace grdes = 57 if  y1sovgr55t59  == 1
+replace grdes = 52 if  y1sovgr50t54  == 1
+replace grdes = 40 if  y1sovgrlt50 == 1
+
+gen c2studyhrs = 0 if f2q12 == 1
+replace c2studyhrs = 1 if f2q12== 2
+replace c2studyhrs = 2 if f2q12== 3
+replace c2studyhrs = 5.5 if f2q12== 4
+replace c2studyhrs = 11 if f2q12== 5
+replace c2studyhrs = 15 if f2q12== 6
+
+
+gen c2grdes = 95 if  c2q01a == 1
+replace c2grdes = 85 if  c2q01a == 2
+replace c2grdes = 75 if  c2q01a == 3
+replace c2grdes = 65 if  c2q01a == 4
+replace c2grdes = 57 if  c2q01a == 5
+replace c2grdes = 52 if  c2q01a == 6
+replace c2grdes = 40 if  c2q01a == 7
+
+
+
+
+gen parexplths = pb22 == 1 if pb22 < 90
+gen pexphs = pb22 == 2 if pb22 < 90
+gen pexptrade = pb22 == 3 if pb22 < 90
+gen pexpcoll = pb22 == 4 if pb22 < 90
+gen pexpuni= pb22 == 5 if pb22 < 90
+gen pexpgrdeg = pb22 == 6 if pb22 < 90
+gen pexpany= pb22 == 7 if pb22 < 90
+
+gen parexp  = pb22 if pb22 < 90
+
+gen stuexp = 1 if y1sexphs ~= .
+replace stuexp = 2 if  y1sexptrade == 1
+replace stuexp = 3 if  y1sexpcollge== 1
+replace stuexp = 4 if  y1sexpbadeg== 1
+replace stuexp = 5 if  y1sexpgrad == 1
+replace stuexp = 6 if  y1sexphs == 1
+
+
+
+gen panyobst = pb25a == 1 if pb25a < 3
+
+gen anyobxfin = panyobst*p1pfinobst
+
+gen dstudyhrs = c2studyhrs -studyhrs
+
+gen dgrades =  c2grdes - grdes 
+
+gen frhsimp = ysd2a == 4 if ysd2a < 5
+
+label var  frhsimp "All close friends think high school completion very important"
+
+gen frskip = ysd2b == 4 if ysd2b < 5
+
+label var  frskip "All close friends skip classes once a week"
+
+gen frdrop = ysd2c == 4 if ysd2c < 5
+
+label var  frdrop "All close friends have dropped out"
+
+gen frmoreed = ysd2d == 4 if ysd2d < 5
+
+label var  frmoreed "All close friends plan more ed"
+
+gen frtroub = ysd2e == 4 if ysd2e < 5
+
+label var  frtroub "All close friends have a reputation for trouble"
+
+gen frsmoke = ysd2f == 4 if ysd2f < 5
+
+label var  frsmoke "All close friends smoke"
+
+gen frswkhrd = ysd2g == 4 if ysd2g < 5
+
+label var frswkhrd "All close friends think it's ok to work hard"
+
+
+gen ya = ysd2a if ysd2a < 5
+gen yb = ysd2b if ysd2b < 5
+gen yc = ysd2c if ysd2c < 5
+gen yd = ysd2d if ysd2d < 5
+gen ye = ysd2e if ysd2e < 5
+gen yf = ysd2f if ysd2f < 5
+gen yg = ysd2g if ysd2g < 5
+
+
+
+gen frscale = yb-ya + yc -yd + ye +yf - yg +8
+
+gen depchild= (depchd2 > 0 & depchd2 < 5) |  (depchd3 > 0 & depchd3 < 5)
+
+gen missdepchild = depchd2 == 99 | depchd3 == 99
+replace missdepchild = 0 if depchild == 1
+
+gen x1 = sqrt(pa1)
+gen aeqivinc= (p1pfaminc/x1)/1000
+
+
+gen parexpatlhs = 1 if parexplths == 1 | pexphs == 1
+replace parexpatlhs = 0 if parexplths == 0 & pexphs == 0
+
+gen rural = 1-p1purban
+
+
+gen kidexpct = 1 if  y1sexplths == 1
+replace kidexpct = 2 if y1sexphs == 1
+replace kidexpct = 3 if  y1sexptrade == 1
+replace kidexpct = 4 if y1sexpcollge == 1
+replace kidexpct = 5 if y1sexpbadeg == 1
+replace kidexpct = 6 if  y1sexpgrad   == 1
+
+replace kidexpct = 7 if  ysdv_a11 == 97
+
+gen kiddknow =  ysdv_a11 == 97
+
+label var kidexpct "Y expectation 7 cat"
+
+gen kidexpsm = 1 if kidexpct < 3
+replace kidexpsm = 3 if kidexpct > 2 & kidexpct < 5
+replace kidexpsm = 4 if kidexpct > 4 & kidexpct ~= .
+replace kidexpsm = 2 if ysdv_a11 == 97
+
+
+
+gen kidexpsma = 1 if kidexpct < 3
+replace kidexpsma = 2 if kidexpct > 2 & kidexpct < 5
+replace kidexpsma = 3 if kidexpct > 4 & kidexpct ~= .
+
+
+
+label var kidexpsma "Y expectation w/o Don't know"
+ta kidexpsm, gen(yexpect)
+
+
+label var yexpect1 "Y expect HS or less"
+label var yexpect2 "Y expect don't know"
+label var yexpect3 "Y expect trade or college"
+label var yexpect4 "Y expect BA or more"
+
+
+gen parexpct = 1 if parexplths == 1
+replace parexpct = 2 if pexphs == 1 
+replace parexpct = 3 if pexptrade == 1
+replace parexpct = 4 if pexpcoll  == 1
+replace parexpct = 5 if pexpuni  == 1
+replace parexpct = 6 if pexpgrdeg   == 1
+replace parexpct = 7 if pexpany == 1
+
+gen parexpsm = 1 if parexpct < 3
+replace parexpsm = 3 if parexpct > 2 & parexpct < 5
+replace parexpsm = 4 if parexpct > 4 & parexpct ~= .
+replace parexpsm = 2 if parexpct == 7
+
+ta parexpsm, gen(pexpect)
+
+label var pexpect1 "P expect HS or less"
+label var pexpect2 "P expect Any > HS"
+label var pexpect3 "P expect trade or college"
+label var pexpect4 "P expect BA or more"
+
+gen parhope = 1 if parexpct < 5 | parexpct == 7
+replace parhope = 2 if parexpct == 5 | parexpct == 6
+
+gen kidhope = 1 if kidexpct < 5 
+replace kidhope = 2 if kidexpct == 5 | kidexpct == 6
+replace kidhope = 3 if ysdv_a11 == 97
+
+egen kidparhope = group(kidhope parhope)
+
+label define kidparf 1 "Y < BA P < BA"
+label define kidparf 2 "Y < BA P > BA", a
+label define kidparf 3 "Y > BA  P < BA", a
+label define kidparf 4 "Y > BA  P > BA", a
+label define kidparf 5 "Y DK  P < BA", a
+label define kidparf 6 "Y DK  P > BA", a
+
+label val kidparhope kidparf
+
+
+
+
+
+ta kidparhope, gen(hopeint)
+
+
+label var hopeint1 "Y < BA P < BA"
+label var hopeint2 "Y < BA P > BA"
+label var hopeint3 "Y > BA  P < BA"
+label var hopeint4 "Y > BA  P > BA"
+label var hopeint5 "Y DK  P < BA"
+label var hopeint6 "Y DK  P > BA"
+
+egen hoperead = group(kidparhope readtile1)
+
+label define kidpareadf 1 "Y < BA P < BA Q1"
+label define kidpareadf 2 "Y < BA P < BA Q2", a 
+label define kidpareadf 3 "Y < BA P < BA Q3", a 
+label define kidpareadf 4 "Y < BA P < BA Q4", a 
+label define kidpareadf 5 "Y < BA P > BA Q1", a
+label define kidpareadf 6 "Y < BA P > BA Q2", a
+label define kidpareadf 7 "Y < BA P > BA Q3", a
+label define kidpareadf 8 "Y < BA P > BA Q4", a
+label define kidpareadf 9 "Y > BA  P < BA Q1", a
+label define kidpareadf 10 "Y > BA  P < BA Q2", a
+label define kidpareadf 11 "Y > BA  P < BA Q3", a
+label define kidpareadf 12 "Y > BA  P < BA Q4", a
+label define kidpareadf 13 "Y > BA  P > BA Q1", a
+label define kidpareadf 14 "Y > BA  P > BA Q2", a
+label define kidpareadf 15 "Y > BA  P > BA Q3", a
+label define kidpareadf 16 "Y > BA  P > BA Q4", a
+label define kidpareadf 17 "Y DK  P < BA Q1", a
+label define kidpareadf 18 "Y DK  P < BA Q2", a
+label define kidpareadf 19 "Y DK  P < BA Q3", a
+label define kidpareadf 20 "Y DK  P < BA Q4", a
+label define kidpareadf 21 "Y DK  P > BA Q1", a
+label define kidpareadf 22 "Y DK  P > BA Q2", a
+label define kidpareadf 23 "Y DK  P > BA Q3", a
+label define kidpareadf 24 "Y DK  P > BA Q4", a
+
+label val hoperead kidpareadf
+
+ta hoperead, gen(hreadcat)
+
+label var hreadcat1 "Y < BA P < BA Q1"
+label var hreadcat2 "Y < BA P < BA Q2" 
+label var hreadcat3 "Y < BA P < BA Q3" 
+label var hreadcat4 "Y < BA P < BA Q4" 
+label var hreadcat5 "Y < BA P > BA Q1"
+label var hreadcat6 "Y < BA P > BA Q2"
+label var hreadcat7 "Y < BA P > BA Q3"
+label var hreadcat8 "Y < BA P > BA Q4"
+label var hreadcat9 "Y > BA  P < BA Q1"
+label var hreadcat10 "Y > BA  P < BA Q2"
+label var hreadcat11 "Y > BA  P < BA Q3"
+label var hreadcat12 "Y > BA  P < BA Q4"
+label var hreadcat13 "Y > BA  P > BA Q1"
+label var hreadcat14 "Y > BA  P > BA Q2"
+label var hreadcat15 "Y > BA  P > BA Q3"
+label var hreadcat16 "Y > BA  P > BA Q4"
+label var hreadcat17 "Y DK  P < BA Q1"
+label var hreadcat18 "Y DK  P < BA Q2"
+label var hreadcat19 "Y DK  P < BA Q3"
+label var hreadcat20 "Y DK  P < BA Q4"
+label var hreadcat21 "Y DK  P > BA Q1"
+label var hreadcat22 "Y DK  P > BA Q2"
+label var hreadcat23 "Y DK  P > BA Q3"
+label var hreadcat24 "Y DK  P > BA Q4"
+
+
+
+egen hedld = rowmax(hedld2 hedld3)
+
+
+gen bdate = mdy(bmonthd2,15,byeard2)
+
+gen lsinschool2 = mdy(lesmtd2,15,lesyrd2) if lesyrd2< 9000
+gen lsinschool3 = mdy(lesmtd3,15,lesyrd3) if lesyrd3< 9000
+
+gen hsgrad2 = mdy(hsdipmd2,15,hsdipyd2) if hsdipyd2 < 9000
+gen hsgrad3 = mdy(hsdipmd3,15,hsdipyd3) if hsdipyd3 < 9000
+
+
+gen lsinpse2 = mdy(dlpsmd2,15,dlpsyd2) if dlpsyd2 < 9000
+gen lsinpse3 = mdy(dlpsmd3,15,dlpsyd3) if dlpsyd3 < 9000
+
+egen maxpse = rowmax(lsinpse2 lsinpse3)
+
+
+gen datelast = lsinschool2 if hsstatd2 == 3 & hsstatd3 == 3
+gen type = 1 if hsstatd2 == 3 & hsstatd3 == 3
+replace datelast  = lsinschool3 if hsstatd2 == 2 & hsstatd3 == 3
+replace type = 2 if hsstatd2 == 2 & hsstatd3 == 3
+
+replace datelast= lsinschool3 if hsstatd2 == 2 & hsstatd3 == 2
+replace type = 3 if hsstatd2 == 2 & hsstatd3 == 2
+replace datelast= hsgrad2 if hsstatd2 == 1 & hedld3 == 2
+replace type = 4 if hsstatd2 == 1 & hedld3 == 2
+replace datelast= hsgrad3 if hsstatd2 ~= 1 & hedld3 == 2
+replace type = 5 if hsstatd2 ~= 1 & hedld3 == 2
+
+
+replace datelast =maxpse if hedld2 == 3 & hedld3 == 3 
+replace type = 6 if hedld2 < 3 & hedld3 == 3 
+
+
+replace datelast =maxpse if hedld2 < 3 & hedld3 == 3 
+replace type = 7 if hedld2 < 3 & hedld3 == 3 
+
+replace datelast =maxpse if hedld2 == 4 & hedld3 == 4
+replace type = 8 if hedld2 == 4 & hedld3 == 4
+
+replace datelast =maxpse if hedld2 < 4 & hedld3 == 4
+replace type = 9 if hedld2 < 4 & hedld3 == 4
+
+gen startdate = mdy(4,15,2000)
+
+
+
+gen lastmonth = (datelast - startdate)/30
+
+
+
+label define typef 1 "High school drop -out before Age 17"
+label define typef 2 "High school drop -out between Age 17- 19", a
+label define typef 3 "Still in high school Age 19", a
+label define typef 4 "High school grad by age 17", a
+label define typef 5 "High school grad by age 19", a
+label define typef 6 "PSE not completed started before age 17", a
+label define typef 7 "PSE not completed started between Age 17- 19", a
+label define typef 8 "Completed PSE before age 17", a
+label define typef 9 "Completed PSE between Age 17- 19", a
+
+label val type typef
+
+
+
+gen pse = type > 5 if type ~= .
+gen hs = type == 4 |type == 5 if type ~= .
+gen lths = type < 4 if type ~= .
+
+replace pse = 0 if hedld2 == 1 & hedld3 == 1 & type == .
+replace hs = 0 if hedld2 == 1 & hedld3 == 1 & type == .
+replace lths = 1 if hedld2 == 1 & hedld3 == 1 & type == .
+
+replace pse = 1 if hedld2 == 3 & hedld3 == 3 & type == .
+replace hs = 0 if hedld2 == 3 & hedld3 == 3 & type == .
+replace lths = 0 if hedld2 == 3 & hedld3 == 3 & type == .
+
+
+
+
+gen uni = (hlpsd2 > 8 & hlpsd2 < 21) | (hlpsd3 > 8 & hlpsd3 < 21)
+replace uni = . if hlpsd2 > 96 & hlpsd3 > 96
+
+gen college = pse == 1 & uni == 0
+replace college = . if pse == . | uni == .
+
+
+
+
+
+
+label define daded5f 1 "Less than high school"
+label define daded5f 2 "High school", a
+label define daded5f 3 "Any PSE below BA", a
+label define daded5f 4 "BA and above", a
+label define daded5f 5 "Missing data", a
+
+label val dadedcat5 daded5f
+label val momedcat5 daded5f
+
+
+egen a2 =group(dadedcat5 momedcat5)
+
+label define edcat5intf 1 "Dad < HS Mom < HS"
+label define edcat5intf 2 "Dad < HS Mom HS", a
+label define edcat5intf 3 "Dad < HS Mom PSE below BA", a
+label define edcat5intf 4 "Dad < HS Mom BA or more", a
+label define edcat5intf 5 "Dad < HS Mom Missing", a
+label define edcat5intf 6 "Dad HS Mom < HS", a
+label define edcat5intf 7 "Dad HS Mom HS", a
+label define edcat5intf 8 "Dad HS Mom PSE below BA", a
+label define edcat5intf 9 "Dad HS Mom BA or more", a
+label define edcat5intf 10 "Dad HS Mom Missing", a
+label define edcat5intf 11 "Dad PSE below BA Mom < HS", a
+label define edcat5intf 12 "Dad PSE below BA Mom HS", a
+label define edcat5intf 13 "Dad PSE below BA Mom PSE below BA", a
+label define edcat5intf 14 "Dad PSE below BA Mom BA or more", a
+label define edcat5intf 15 "Dad PSE below BA Mom Missing", a
+label define edcat5intf 16 "Dad BA or more Mom < HS", a
+label define edcat5intf 17 "Dad BA or more Mom HS", a
+label define edcat5intf 18 "Dad BA or more Mom PSE below BA", a
+label define edcat5intf 19 "Dad BA or more Mom BA or more", a
+label define edcat5intf 20 "Dad BA or more Mom Missing", a
+label define edcat5intf 21 "Dad missing Mom < HS", a
+label define edcat5intf 22 "Dad missing Mom HS", a
+label define edcat5intf 23 "Dad missing Mom PSE below BA", a
+label define edcat5intf 24 "Dad missing Mom BA or more", a
+label define edcat5intf 25 "Dad missing Mom Missing", a
+
+
+label val a2 edcat5intf
+
+
+label var a2 "Parents Ed interacted"
+
+ta a2, gen(paredint)
+
+label var paredint1 "Dad < HS Mom < HS"
+label var paredint2 "Dad < HS Mom HS"
+label var paredint3 "Dad < HS Mom PSE below BA"
+label var paredint4 "Dad < HS Mom BA or more"
+label var paredint5 "Dad < HS Mom Missing"
+label var paredint6 "Dad HS Mom < HS"
+label var paredint7 "Dad HS Mom HS"
+label var paredint8 "Dad HS Mom PSE below BA"
+label var paredint9 "Dad HS Mom BA or more"
+label var paredint10 "Dad HS Mom Missing"
+label var paredint11 "Dad PSE below BA Mom < HS"
+label var paredint12 "Dad PSE below BA Mom HS"
+label var paredint13 "Dad PSE below BA Mom PSE below BA"
+label var paredint14 "Dad PSE below BA Mom BA or more"
+label var paredint15 "Dad PSE below BA Mom Missing"
+label var paredint16 "Dad BA or more Mom < HS"
+label var paredint17 "Dad BA or more Mom HS"
+label var paredint18 "Dad BA or more Mom PSE below BA"
+label var paredint19 "Dad BA or more Mom BA or more"
+label var paredint20 "Dad BA or more Mom Missing"
+label var paredint21 "Dad missing Mom < HS"
+label var paredint22 "Dad missing Mom HS"
+label var paredint23 "Dad missing Mom PSE below BA"
+label var paredint24 "Dad missing Mom BA or more"
+label var paredint25 "Dad missing Mom Missing"
+
+
+gen lowpayexp = (ysk1j == 3 | ysk1j == 4) & ysk1j~= 9
+
+gen nogoal = ysk7d == 6
+gen dkgoal = ysk7d == 9
+gen nounigoal = ysk7d == 2 & ysk7e == 2 
+
+
+label var nogoal "Y does not have occupation goal"
+label var dkgoal "Y doesn't know how much ed for goal"
+label var nounigoal "Less than uni needed for goal"
+
+gen savedforkid = pb2701 == 1 |  pb2702 == 1 | pb2703 == 1 | pb2704 == 1 | pb2705 == 1
+#delim ;
+replace savedforkid = . if (pb2701 == 8 | pb2701 == 9) &   (pb2702 == 8 | pb2702 == 9)
+ &   (pb2703 == 8 | pb2703 == 9) &   (pb2704 == 8 | pb2704 == 9) &   (pb2705 == 8 | pb2705 == 9) ;
+#delim cr
+
+gen nosave = 1-savedforkid
+
+label var  nosave "Parent has not saved for ed"
+label var savedforkid "Parent has saved for ed"
+
+
+
+gen fracounta = counta/43
+gen fracountc = countc/10
+gen fracountd = countd/16
+gen fracounte = counte/7
+gen fracountf = countf/7
+gen fracountg = countg/10
+gen fracounth = counth/3
+gen fracounti = counti/17
+gen fracountj = countj/61
+gen fracountk = countk/33
+
+
+
+
+gen yitscount = counta + countc+countd +counte+countf+countg+counth+counti+countj+countk
+
+gen yitsfrac = yitscount/207
+
+gen pisafrac = pisacount/177
+
+gen totalfrac = (yitscount+pisacount)/384
+
+gen dishwltmn = pb15c == 1 | pb15c == 2 if pb15c < 90
+gen dishwmnth = pb15c == 3  if pb15c < 90
+gen dishwgtmn = pb15c ==  4 |  pb15c ==5 if pb15c < 90
+
+
+use "K:\Green_YITS\Dropouts\readonlydata\May 28 2007\Analysis File 31MAY07.dta", clear
+
+
+
+gen more80 = mindist > 80 if mindist ~= .
+
+label var more80 "Lives more than 80K from Univeristy"
+
+local i = 2
+gen c`i'kidexpsm = 1 if m`i'q31 == 1 
+replace c`i'kidexpsm = 2 if m`i'q31 == 11 
+replace c`i'kidexpsm = 3 if m`i'q31 > 2 & m`i'q31 < 6
+replace c`i'kidexpsm = 4 if m`i'q31 > 5 & m`i'q31 < 10
+
+
+gen c`i'obsgrade = 1 if  m`i'q32c == 1 
+replace c`i'obsgrade =  0 if  m`i'q32c == 2 | m`i'q32a == 1 
+
+
+gen c`i'obsfinan = 1 if  m`i'q32b == 1 
+replace c`i'obsfinan = 0 if  m`i'q32b == 2 | m`i'q32a == 1 
+
+
+local i = 3
+gen c`i'kidexpsm = 1 if m`i'q31 == 1 
+replace c`i'kidexpsm = 2 if m`i'q31 == 11 
+replace c`i'kidexpsm = 3 if m`i'q31 > 2 & m`i'q31 < 6
+replace c`i'kidexpsm = 4 if m`i'q31 > 5 & m`i'q31 < 10
+
+
+gen c`i'obsgrade = 1 if  m`i'q32c == 1 
+replace c`i'obsgrade =  0 if  m`i'q32c == 2 | m`i'q32a == 1 
+
+
+gen c`i'obsfinan = 1 if  m`i'q32b == 1 
+replace c`i'obsfinan = 0 if  m`i'q32b == 2 | m`i'q32a == 1 
+
+label define kidexf 1 "HS or less"
+label define kidexf 2 "Don't Know", a
+label define kidexf 3 "College/Trade", a
+label define kidexf 4 "BA or more", a
+
+label val kidexpsm kidexf
+
+label define kideaxf 1 "HS or less"
+label define kideaxf 2 "College/Trade", a
+label define kideaxf 3 "BA or more", a
+
+label val kidexpsma kideaxf
+
+label val c2kidexpsm kidexf
+label val c3kidexpsm kidexf
+
+use "K:\Green_YITS\Dropouts\readonlydata\May 28 2007\Analysis File 01JUN07.dta", clear
+
+gen krepdadexp = ysk9a if ysk9a < 7
+gen krepmomexp = ysk9b if ysk9b < 7
+
+gen c2kreparexp = u2q58 if u2q58 < 7 
+replace c2kreparexp = 5 if u2q58 == 7
+
+
+label define krepf 1 "Not important"  
+label define krepf 2 "Slightly important", a
+label define krepf 3 "Fairly important", a
+label define krepf 4 "Very important", a
+label define krepf 5 "Don't know", a
+label define krepf 6 "No such person", a
+
+label val krepdadexp krepf
+label val krepmomexp krepf
+
+label val c2kreparexp krepf
+
+
+label var krepdadexp "Kid report father expectation"
+label var krepmomexp "Kid report mother expectation"
+
+label var c2kreparexp "C2 Kid report parent expectation"
+
+
+gen c2kidexpth = 1 if m2q30 == 1 | m2q30 == 2
+replace c2kidexpth = 2 if m2q30 == 97
+replace c2kidexpth = 3 if m2q30 > 2 & m2q30 < 6
+replace c2kidexpth = 4 if m2q30 > 5 & m2q30 < 10
+
+
+gen c3kidexpth = 1 if m3q30 == 1 | m3q30 == 2
+replace c3kidexpth = 2 if m3q30 == 97
+replace c3kidexpth = 3 if m3q30 > 2 & m3q30 < 6
+replace c3kidexpth = 4 if m3q30 > 5 & m3q30 < 10
+
+label val c2kidexpth kidexf
+label val c3kidexpth kidexf
+
+
+gen sports = ysc2a == 1 if ysc2a < 3
+gen artsclub = ysc2b == 1 if ysc2b < 3
+gen studcoun = ysc2c == 1 if ysc2c < 3
+
+gen nosports = 1-sports
+gen noartsclub = 1-artsclub
+gen nostudcoun = 1-studcoun
+
+
+destring sc03q01, replace force 
+destring sc07q02 , replace force 
+destring sc07q04 , replace force 
+gen privateschool = sc03q01 == 2  if sc03q01  < 3
+
+gen atestadmit = sc07q02 == 3 if sc07q02 < 4 
+gen stestadmit = sc07q02 == 2 if sc07q02 < 4 
+gen astestadmit = sc07q02 == 2 | sc07q02 == 3 if sc07q02 < 4 
+
+gen avalues = sc07q04 == 3 if sc07q04 < 4 
+gen svalues = sc07q04 == 2 if sc07q04 < 4 
+gen asvalues = sc07q04 == 2 | sc07q04 == 3 if sc07q04 < 4 
+
+gen privvalues = asvalues*privateschool 
+destring sc08q04, replace force
+gen fracnotuni = 1- (sc08q04/100)
+
+destring sc19q01, force replace
+gen teachexp = sc19q01 == 3 | sc19q01 == 4 if sc19q01 < 5
+destring studbeha, replace force
+destring teacbeha, force replace
+
+destring scmatedu, force replace
+
+
+
+/***********June 12*****************************/
+
+
+gen kidx = 1 if kidexpsm == 1 | kidexpsm == 3
+replace kidx = 2 if kidexpsm == 4
+replace kidx = 3  if kidexpsm == 2
+
+
+
+
+gen c2kidx = 1 if c2kidexpsm == 1 | c2kidexpsm == 3
+replace c2kidx = 2 if c2kidexpsm == 4
+replace c2kidx = 3  if c2kidexpsm == 2
+
+ta c2kidx, gen(c2kidexp)
+
+label var c2kidexp1 "Cycle 2 Y < BA"
+label var c2kidexp2 "Cycle 2 Y > BA"
+label var c2kidexp3 "Cycle 2 Y DK"
+
+
+egen kidpisa = group(kidx readtile1)
+
+
+label define kidgxf 1 "Y < BA Q 1"
+label define kidgxf 2 "Y < BA Q 2", a 
+label define kidgxf 3 "Y < BA Q 3", a 
+label define kidgxf 4 "Y < BA Q 4", a 
+label define kidgxf 5 "Y > BA Q 1", a 
+label define kidgxf 6 "Y > BA Q 2", a 
+label define kidgxf 7 "Y > BA Q 3", a 
+label define kidgxf 8 "Y > BA Q 4", a 
+label define kidgxf 9 "Y DK Q 1", a 
+label define kidgxf 10 "Y DK Q 2", a 
+label define kidgxf 11 "Y DK Q 3", a 
+label define kidgxf 12 "Y DK Q 4", a 
+
+label val kidpisa kidgxf
+
+ta kidpisa, gen(kidpisax)
+
+label var kidpisax1 "Y < BA Q 1"
+label var kidpisax2 "Y < BA Q 2" 
+label var kidpisax3 "Y < BA Q 3" 
+label var kidpisax4 "Y < BA Q 4" 
+label var kidpisax5 "Y > BA Q 1" 
+label var kidpisax6 "Y > BA Q 2" 
+label var kidpisax7 "Y > BA Q 3" 
+label var kidpisax8 "Y > BA Q 4" 
+label var kidpisax9 "Y DK Q 1" 
+label var kidpisax10 "Y DK Q 2" 
+label var kidpisax11 "Y DK Q 3" 
+label var kidpisax12 "Y DK Q 4" 
+
+
+egen parpisa = group(parhope readtile1)
+
+
+label define parpisafx 1 "P < BA Q1"
+label define parpisafx 2 "P < BA Q2", a
+label define parpisafx 3 "P < BA Q3", a
+label define parpisafx 4 "P < BA Q4", a
+label define parpisafx 5 "P > BA Q1", a
+label define parpisafx 6 "P > BA Q2", a
+label define parpisafx 7 "P > BA Q3", a
+label define parpisafx 8 "P > BA Q4", a
+
+label val parpisa parpisafx
+
+ta parpisa, gen(parpisax)
+
+
+label var parpisax1 "P < BA Q1"
+label var parpisax2 "P < BA Q2"
+label var parpisax3 "P < BA Q3"
+label var parpisax4 "P < BA Q4"
+label var parpisax5 "P > BA Q1"
+label var parpisax6 "P > BA Q2"
+label var parpisax7 "P > BA Q3"
+label var parpisax8 "P > BA Q4"
+
+
+gen read3 = 1 if readtile1 == 1
+replace read3 = 2 if readtile1 == 2 | readtile1 == 3
+replace read3 = 3 if readtile1 == 4
+
+egen yc12parread = group(kidhope c2kidx parhope read3)
+
+label define fullintf 1 "Y1 Low Y2 Low P LowQ1"
+label define fullintf 2 "Y1 Low Y2 Low P LowQ23", a
+label define fullintf 3 "Y1 Low Y2 Low P LowQ4", a
+label define fullintf 4 "Y1 Low Y2 Low P HighQ1", a
+label define fullintf 5 "Y1 Low Y2 Low P HighQ23", a
+label define fullintf 6 "Y1 Low Y2 Low P HighQ4", a
+label define fullintf 7 "Y1 Low Y2 HighP LowQ1", a
+label define fullintf 8 "Y1 Low Y2 HighP LowQ23", a
+label define fullintf 9 "Y1 Low Y2 HighP LowQ4", a
+label define fullintf 10 "Y1 Low Y2 HighP HighQ1", a
+label define fullintf 11 "Y1 Low Y2 HighP HighQ23", a
+label define fullintf 12 "Y1 Low Y2 HighP HighQ4", a
+label define fullintf 13 "Y1 Low Y2 DKP LowQ1", a
+label define fullintf 14 "Y1 Low Y2 DKP LowQ23", a
+label define fullintf 15 "Y1 Low Y2 DKP LowQ4", a
+label define fullintf 16 "Y1 Low Y2 DKP HighQ1", a
+label define fullintf 17 "Y1 Low Y2 DKP HighQ23", a
+label define fullintf 18 "Y1 Low Y2 DKP HighQ4", a
+label define fullintf 19 "Y1 HighY2 Low P LowQ1", a
+label define fullintf 20 "Y1 HighY2 Low P LowQ23", a
+label define fullintf 21 "Y1 HighY2 Low P LowQ4", a
+label define fullintf 22 "Y1 HighY2 Low P HighQ1", a
+label define fullintf 23 "Y1 HighY2 Low P HighQ23", a
+label define fullintf 24 "Y1 HighY2 Low P HighQ4", a
+label define fullintf 25 "Y1 HighY2 HighP LowQ1", a
+label define fullintf 26 "Y1 HighY2 HighP LowQ23", a
+label define fullintf 27 "Y1 HighY2 HighP LowQ4", a
+label define fullintf 28 "Y1 HighY2 HighP HighQ1", a
+label define fullintf 29 "Y1 HighY2 HighP HighQ23", a
+label define fullintf 30 "Y1 HighY2 HighP HighQ4", a
+label define fullintf 31 "Y1 HighY2 DKP LowQ1", a
+label define fullintf 32 "Y1 HighY2 DKP LowQ23", a
+label define fullintf 33 "Y1 HighY2 DKP LowQ4", a
+label define fullintf 34 "Y1 HighY2 DKP HighQ1", a
+label define fullintf 35 "Y1 HighY2 DKP HighQ23", a
+label define fullintf 36 "Y1 HighY2 DKP HighQ4", a
+label define fullintf 37 "Y1 DKY2 Low P LowQ1", a
+label define fullintf 38 "Y1 DKY2 Low P LowQ23", a
+label define fullintf 39 "Y1 DKY2 Low P LowQ4", a
+label define fullintf 40 "Y1 DKY2 Low P HighQ1", a
+label define fullintf 41 "Y1 DKY2 Low P HighQ23", a
+label define fullintf 42 "Y1 DKY2 Low P HighQ4", a
+label define fullintf 43 "Y1 DKY2 HighP LowQ1", a
+label define fullintf 44 "Y1 DKY2 HighP LowQ23", a
+label define fullintf 45 "Y1 DKY2 HighP LowQ4", a
+label define fullintf 46 "Y1 DKY2 HighP HighQ1", a
+label define fullintf 47 "Y1 DKY2 HighP HighQ23", a
+label define fullintf 48 "Y1 DKY2 HighP HighQ4", a
+label define fullintf 49 "Y1 DKY2 DKP LowQ1", a
+label define fullintf 50 "Y1 DKY2 DKP LowQ23", a
+label define fullintf 51 "Y1 DKY2 DKP LowQ4", a
+label define fullintf 52 "Y1 DKY2 DKP HighQ1", a
+label define fullintf 53 "Y1 DKY2 DKP HighQ23", a
+label define fullintf 54 "Y1 DKY2 DKP HighQ4", a
+
+label val yc12parread fullintf
+
+ta yc12parread, gen(c2expread)
+drop c2expread30
+
+
+ta  c2kidexpth, gen(c2kidexpth)
+
+
+gen reparedcat5 = momedcat5 if mother == 1
+replace reparedcat5 = dadedcat5 if mother == 0
+
+gen nreparedcat5 = momedcat5 if mother == 0
+replace nreparedcat5 = dadedcat5 if mother == 1
+label val reparedcat5 daded5f
+label val nreparedcat5 daded5f
+
+ta reparedcat5, gen(reparedcat5_) 
+ta nreparedcat5, gen(nreparedcat5_)
+
+label var reparedcat5_1 "Less than high school"
+label var reparedcat5_2 "High school"
+label var reparedcat5_3 "Any PSE below BA"
+label var reparedcat5_4 "BA and above"
+label var reparedcat5_5 "Missing data"
+
+label var nreparedcat5_1 "Less than high school"
+label var nreparedcat5_2 "High school"
+label var nreparedcat5_3 "Any PSE below BA"
+label var nreparedcat5_4 "BA and above"
+label var nreparedcat5_5 "Missing data"
+
+save "$dir\Analysis File $todfile.dta", replace
+
