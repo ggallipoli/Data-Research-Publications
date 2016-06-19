@@ -1,0 +1,3 @@
+<The two folders contain data and code for two parts of the paper. 
+./data work/ contains data and code to replicate all empirical results. 
+./numerical work/ contains all data and code to replicate quantitative numerical results. Each folder has a self contained readme file.>
