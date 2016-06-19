@@ -22,7 +22,7 @@ Review of Economic Analysis, 5 (2), 127-176, 2013
 *Giovanni Gallipoli, Kelly Foley and David Green* <br/>
 Journal of Human Resources, 49 (4), 906-944, October 2014
 
-6. **Human Capital Spill-Overs and the Geography of Intergenerational Mobility**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Ability-Parental-Valuation-of-Education-and-the-High-School%20Drop-Out-Decision), [Paper](https://sites.google.com/site/gallipoligiovanni/AG_IGE.pdf) <br/>
+6. **Human Capital Spill-Overs and the Geography of Intergenerational Mobility**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Human-Capital-Spill-Overs-and-the-Geography-of-Intergenerational-Mobility), [Paper](https://sites.google.com/site/gallipoligiovanni/AG_IGE.pdf) <br/>
 *Giovanni Gallipoli, and Brant Abbott* <br/>
 Review of Economic Dynamics, special issue on human capital and inequality, 201X
 
