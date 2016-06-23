@@ -24,5 +24,5 @@ Journal of Human Resources, 49 (4), 906-944, October 2014
 
 6. **Human Capital Spill-Overs and the Geography of Intergenerational Mobility**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Human-Capital-Spill-Overs-and-the-Geography-of-Intergenerational-Mobility), [Paper](https://sites.google.com/site/gallipoligiovanni/AG_IGE.pdf) <br/>
 *Giovanni Gallipoli, and Brant Abbott* <br/>
-Review of Economic Dynamics, special issue on human capital and inequality, 201X
+Review of Economic Dynamics, forthcoming
 
