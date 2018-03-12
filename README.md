@@ -1,5 +1,5 @@
 # Data-Research-Publications
-### [https://giovanni-gallipoli.ca/](https://giovanni-gallipoli.ca/)
+### [http://giovanni-gallipoli.ca/](https://giovanni-gallipoli.ca/)
 Datasets for my research publications
 
 1. **Skill Dispersion and Trade Flows**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Skill-Dispersion-and-Trade-Flows), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/BGP.pdf) <br/>
