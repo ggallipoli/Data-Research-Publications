@@ -1,7 +1,8 @@
 Authors: Giovanni Gallipoli (gallipol@mail.ubc.ca) and Christos Makridis (makridis@mit.edu)
 August 2018
 
-This file contains all data and code necessary to replixcate results in the paper "Structural Transformation and the Rise of Information technology", by Giovanni Gallipoli and Christos Makridis.
+This file contains code necessary to replixcate results in the paper "Structural Transformation and the Rise of Information technology", by Giovanni Gallipoli and Christos Makridis. The data sets are very large and are stored (and available for download) at the following link:
+https://www.dropbox.com/s/357lfyg1rcqnwl9/Gallipoli_Makridis_JME2018_data.zip?dl=0
 
 "replicate_all" contains the majority of the commands for reproducing the tables and figures that are contained in the published version of the paper. There are two exceptions.
 
