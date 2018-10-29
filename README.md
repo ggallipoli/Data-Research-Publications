@@ -28,5 +28,8 @@ Review of Economic Dynamics, 25, 208-233, 2017
 
 7. **The Costs of Occupational Mobility: an Aggregate Analysis**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/The-Costs-of-Occupational-Mobility-An-Aggregate-Analysis), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/gravity_draft.pdf) <br/>
 *Giovanni Gallipoli, and Matias Cortes* <br/>
-Journal of the European Economic Association, forthcoming
+Journal of the European Economic Association, 16 (2), 275-315, 2018
 
+8. **Structural Transformation and the Rise of Information technology**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/The-Costs-of-Occupational-Mobility-An-Aggregate-Analysis), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/gravity_draft.pdf) <br/>
+*Giovanni Gallipoli, and Christos Makridis* <br/>
+Journal of Monetary Economics, forthcoming
