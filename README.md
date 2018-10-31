@@ -32,4 +32,4 @@ Journal of the European Economic Association, 16 (2), 275-315, 2018
 
 8. **Structural Transformation and the Rise of Information technology**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Structural-Transformation-and-the-Rise-of-information-technology), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/02/GM_Structural_transformation_IT.pdf) <br/>
 *Giovanni Gallipoli, and Christos Makridis* <br/>
-Journal of Monetary Economics, forthcoming
+Journal of Monetary Economics, Vol.97, 91-110, 2018 (Carnegie Rochester NYU Series on Public Policy)
