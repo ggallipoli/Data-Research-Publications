@@ -36,6 +36,6 @@ Journal of the European Economic Association, 16 (2), 275-315, 2018
 *Giovanni Gallipoli, and Christos Makridis* <br/>
 Journal of Monetary Economics, Vol.97, 91-110, 2018 (Carnegie Rochester NYU Series on Public Policy)
 
-9. **Markov-Chain Approximations for Life-Cycle Models**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/The-Costs-of-Occupational-Mobility-An-Aggregate-Analysis), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/12/fgp.pdf) <br/>
+9. **Markov-Chain Approximations for Life-Cycle Models**, [Data](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Markov-Chain-Approximations-for-Life-Cycle), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/12/fgp.pdf) <br/>
 *Giulio Fella, Giovanni Gallipoli, and Jutong Pan* <br/>
 Review of Economic Dynamics, forthcoming
