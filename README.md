@@ -30,7 +30,7 @@ Review of Economic Dynamics, 25, 208-233, 2017
 
 7. **The Costs of Occupational Mobility: an Aggregate Analysis**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/The-Costs-of-Occupational-Mobility-An-Aggregate-Analysis), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/gravity_draft.pdf) <br/>
 *Giovanni Gallipoli, and Matias Cortes* <br/>
-Journal of the European Economic Association, 16 (2), 275-315, 2018
+Journal of the European Economic Association, 16 (2), 275-315, 2018 (lead article)
 
 8. **Structural Transformation and the Rise of Information technology**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Structural-Transformation-and-the-Rise-of-information-technology), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/02/GM_Structural_transformation_IT.pdf) <br/>
 *Giovanni Gallipoli, and Christos Makridis* <br/>
@@ -38,4 +38,9 @@ Journal of Monetary Economics, Vol.97, 91-110, 2018 (Carnegie Rochester NYU Seri
 
 9. **Markov-Chain Approximations for Life-Cycle Models**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Markov-Chain-Approximations-for-Life-Cycle), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/12/fgp.pdf) <br/>
 *Giulio Fella, Giovanni Gallipoli, and Jutong Pan* <br/>
-Review of Economic Dynamics, forthcoming
+Review of Economic Dynamics, Vol.34, 183-201, 2019
+
+10. **Education Policy and Intergenerational Transfers in Equilibrium**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Education-Policy-and-Intergenerational-Transfers-in-Equilibrium), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/06/AGMV.pdf) <br/>
+*Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante* <br/>
+Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
+
