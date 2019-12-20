@@ -1,0 +1,38 @@
+The files in the subfolders reproduce the results in the data tables of the paper (local paths must be set).
+
+Tab 2.1 
+Running the do file generates a frequency matrix summarizing raw numbers of marital matches by spousal education levels. To reproduce the numbers in the table one has to divide the entry in the matrix by the total number of observations in the sample. 
+
+Tab 3.1
+Running the do file performs the wage analysis using the CPS-style wage measure available in the NLSY79, as discussed in Appendix E of the paper. Cognitive ability is approximated by the AFQT89 scores. The do file loads a dta file and generates age-free wages using estimated age profiles (obtained from separate PSID estimates). The procedure delivers ability gradients by gender/education. The initial sample is obtained by applying the sampling restrictions described in Appendix E. The do file also allows to reproduce the residuals for the MDE estimation of the AR1 processes in Table 3.2. 
+
+Tab 3.2
+The Matlab code applies a Minimum Distance Estimator to fit AR1 processes to the stochastic component (residual) of wages, by gender and education. See section 3.2 of the paper.  
+
+Tab 3.3
+There are two Stata do files. One loads the data  from the Children of the NLSY79 (see section 3.3 in the paper); the other do file computes the skill transition frequencies reported in Tables F.1 and 3.3 of the paper. The Excel spreadsheet "transition matrices" reproduces the calculations to obtain table 3.3 from table F.1 in the appendix.
+
+Tab 6.3
+First run dofile.do in ./college_feb_12/, then use the excel spreadsheet to rescale quantities to match aggregate attainment rates.
+
+Tab 6.5
+First run noncog.do, then use the excel file to rescale quanitities into a distribution.
+
+Tab D.1 and D.2
+There are two do files: the first estimates substitution elasticity and share parameters for labor inputs of different genders. The second do file estimates elasticity of substitution and share parameters for labor inputs of different education. Before estimating elasticities, the do files load and organize: (i) price data for different inputs, by education and gender, which have been estimated using PSID data; (ii) wage bill data from the CPS, by gender and education; (iii) different instruments used in the estimation, as discussed in Appendix D of the paper.
+
+Tab E.1
+There are three do files. The first loads the PSID data. The file makedata.do renames variables, generates unique individual identifiers, and reshapes data to panel. The file main.do runs makedata.do and saves the resulting data file. It also applies the sampling procedures described in Appendix E, and estimates age profiles for the wage process. Finally, it creates education and gender-specific files containing the price of different types of labor inputs.
+
+Table F.1
+To replicate table F.1 run child_data/dofile.do
+
+Tab G.1
+The Stata do file generates various measures of inter-vivos transfers (by gender and education of the child) using data from the NLSY97 data files. The Excel spreadsheet combines the estimates from the do file to obtain Table G.1; for reference, the spreadsheet contains comments copying the Stata results from the do file, so that one can trace back the relevant statistics.
+
+Tab H.1
+The do file generates the college attainment rates by gender reported in the Table.
+
+
+
+
