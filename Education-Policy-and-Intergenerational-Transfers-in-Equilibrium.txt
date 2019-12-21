@@ -8,7 +8,6 @@ The data sets are very large and are stored together with the code at the follow
 https://www.dropbox.com/s/t30vdm7x70vdiv4/AGMV_JPE2019-data_and_code_by_table.zip?dl=0
 
 
-
 ******* OVERVIEW TABLE BY TABLE *******
 
 The files in the subfolders reproduce the results in the data tables of the paper (local paths must be set).
