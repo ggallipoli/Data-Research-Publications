@@ -3,7 +3,6 @@ August 2018
 
 This file contains directions to replicate results in the paper "Education Policy and Intergenerational Transfers in Equilibrium", by Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante. The data sets are very large and are stored together with the code at the following link (all available for download):
 
-
 https://www.dropbox.com/s/t30vdm7x70vdiv4/AGMV_JPE2019-data_and_code_by_table.zip?dl=0 
 
 
