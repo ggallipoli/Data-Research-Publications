@@ -44,3 +44,9 @@ Review of Economic Dynamics, Vol.34, 183-201, 2019
 *Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante* <br/>
 Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
 
+11. **Match Quality and Contractual Sorting**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Education-Policy-and-Intergenerational-Transfers-in-Equilibrium), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/06/AGMV.pdf) <br/>
+*Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante* <br/>
+Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
+
+
+
