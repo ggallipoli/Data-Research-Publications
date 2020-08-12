@@ -1,7 +1,7 @@
 Authors: Joao Alfredo Galindo da Fonseca (ja.galindo.da.fonseca@gmail.com), Giovanni Gallipoli (gallipol@mail.ubc.ca), Yaniv Yedid-Levi (yaniv.yl1@gmail.com)
 August 2020
 
-This file contains directions to replicate results in the paper "Match Quality and Contractual Sorting", by J.A. Galindo da Fonseca, G. Gallipoli, and Y. Yedid-Levi. 
+This file can be used to replicate results in the paper "Match Quality and Contractual Sorting", by J.A. Galindo da Fonseca, G. Gallipoli, and Y. Yedid-Levi. 
 
 The data sets are large and are stored together with the code at the following link (freely available for download):
 
