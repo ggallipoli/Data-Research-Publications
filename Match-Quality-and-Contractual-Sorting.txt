@@ -1,0 +1,99 @@
+Authors: Joao Alfredo Galindo da Fonseca (ja.galindo.da.fonseca@gmail.com), Giovanni Gallipoli (gallipol@mail.ubc.ca), Yaniv Yedid-Levi (yaniv.yl1@gmail.com)
+August 2020
+
+This file contains directions to replicate results in the paper "Match Quality and Contractual Sorting", by J.A. Galindo da Fonseca, G. Gallipoli, and Y. Yedid-Levi. 
+
+The data sets are large and are stored together with the code at the following link (freely available for download):
+
+https://www.dropbox.com/s/1xayzu48ozcg5zw/FGY_LE2020-data_and_code_by_table.zip?dl=0
+
+
+This read-me explains the steps in order to replicate our results. To replicate the Tables from the paper use the following do-files
+
+1) "Table_1_and_Table_3_of_Paper.do" : replicates Table 1 (performance pay status regressed on our different measures of match quality) and Table 3 (Summary Statistics on job durations in PPJ vs non-PPJ jobs). 
+
+2) "Table_2_of_Paper.do" : replicates Table 2 (number of offers regressed on our proxies for match quality)
+
+3) "Table_4_and_Table_5_of_Paper.do" : replicates Tables 4 and 5 of paper (regressions of wage on unemployment rate not breaking down and breaking down by PPJ
+
+4) "Tables_Section_E_of_Appendix.do" : replicates Tables E.2.1 and E.3.1 of Data Summary Statistics
+
+5) "Tables_Section_F_of_Appendix.do" : replicates Tables F.1, F.2 and F.3 that look at how our performance pay logit regressions are robust to incrementally including each proxy and each control.
+
+6) "Tables_Section_G_of_Appendix.do" : replicates Tables G.1 and G.2 that show our results are robust to excluding stock options and bonuses from the definition of performance pay.
+
+7) "Tables_Section_H_of_Appendix.do" : replicates Table H.1 that shows our wage regression results are robust to using occupation specific unemployment rates.
+
+8) "Tables_Section_I_of_Appendix.do" : replicates Tables I.1-I.6 that show our results are robust to including women, to consider linear probability specifications rather than logits and to using GDP as an alternative measure of cyclicality. 
+
+9) "Tables_Section_J_of_Appendix.do" : replicates Tables J.1, J.2 and J.3. Table J.1 shows share of performance pay by education and occupation groups. Table J.2 and J.3 show our wage regression results are robust to considering separate specifications by education or occupation group.  
+
+10) "Tables_Section_K_of_Appendix.do" : replicates Tables K.5 and K.6.
+
+The final dta STATA files used to generate the tables in the paper are :
+
+i) "agg_reg_data_Node_newadj_q.dta"
+ii) "performance_info.dta"
+iii) "Ready_regressions.dta"
+iv) "Union_both_ready_analysis.dta" and "Union_ready_analysis.dta"
+v) "Ready_regressions_noStockOpt_Bonus_v1.dta"
+vi) "Ready_regressions_noStockOpt_Bonus_v2.dta"
+vii) "Ready_regressions_with_women.dta"
+viii) "Occspec_avg_unemp_COG.dta" and "Occspec_avg_unemp_MAN.dta"
+
+
+
+
+Steps to reproduce the samples used in the paper from raw data
+
+The do file "Main (List of DoFiles)" reports the list of do files that were used to construct the final sample. The do files used are the following : 
+
+1) extract.do : This do file simply opens the raw data from NLSY, labels and renames variables. Creates dta called "Data_uploaded_from_NLSY"
+
+2) select_sample_NLSY : This do file merges information on interview month, information on previous employer and file containing info on sample. It keeps only observations from main data set (non-supplemental data). Creates dta called "select_sample_NLYS.dta"
+
+3) fgy_number.do : This do file generates a unique job identifier within each worker set of observations (i.e for each CASEID). This job identifier is called "fgy_number". This do file also creates industry groups. Creates dta called "fgy_number_with_occ.dta" This do file creates Coarse industry groups. 
+
+Note : there are some (infrequent) records of non-identical observations with the same individual identifier (CASEID), job number and year. This is due to occasional coding error in the NLSY raw files. The result is that after sorting by CASEID, fgynumber (constructed using job number) and year, there may be more than one unique way to sort of observations. We have noted that different computers may generate different sorting of observations when we Stata is asked to to sort by CASEID, fgynumber and year. The sorting, in turn, may affect which of these duplicate (CASEID, fgynumber, year) triplets are dropped as well as the assignment of industry groups. The samples may be marginally different because of this issue, but the occurrence of this problem is so rare that all estimates and significance level are effectively unchanged (only a few decimals might be different). 
+
+4) sampling.do : This do file creates sampling restrictions based on hours worked. Creates dta called "sampling_NLSY.dta"
+
+5) construction.do : This do file creates defines our employment cycles (uninterrupted job spells) and the job spells within them using information on start and end dates of jobs. Creates dta caךled "empcycles_NLSY.dta"
+
+6) merge_unemp.do : This do file merges the employment cycles and jobs spells created in point 5) to "sampling_NLSY.dta". Using this employment cycle and job spells quarter-year start and end dates merge average unemployment for a job spell (average_unemp_data.dta), unemployment at start of job spell and minium unemployment during that job spell. Minimum unemployment is merged but never actually used for anything. Creates dta called "NLSY_agg_U.dta"
+
+6) a) For those interested in constructing "average_unemp_data.dta" from CPS data it suffices to run "avg_unemp.m" in Matlab (constructs average unemployment for each potential start and stop date combination). Need to copy and paste resulting matrix ("data_dates") and save it in excel "avg_unemp_data.csv". Next, run "gen_average_unemp_data". 
+
+7) Q_THETA_Node_new_adj.do : This do file merges our q-proxies for match quality to main dataset. Merges are done based on start and stop date of job to construct qhm and start of employment cycle and start of job to construct qeh. This do file uses the dta "q_eh_data.dta" that is used to construct both qhm and qeh.  Creates dta called "NLSY_agg_U_Q_Node_newadj_q.dta"
+
+7) a) For those interested in constructing our "q_eh_data.dta" from scratch. Proceed as follows :
+
+i) Run "Tightness_to_go_into_matlab.do" : This creates the time series of labor market tightness to be imputed in Matlab. Creates "Q_vacancies_for_NLSY_periods.csv".
+
+ii) Run "q_eh_construction.m" in matlab. Creates "q_eh_data.csv".
+
+iii) Run "gen_qeh_data.do" in Stata (uses "q_eh_data.csv").
+
+8) housekeeping_Node_new_adj : This do file merges cpi info used to construct real wages and creates the set of controls we will use in our regressions. Creates dta called "agg_reg_data_Node_newadj_q.dta".
+
+9) Create_Dta_Ready_Regressions_used_PPJregs.do : Combines main dataset with union and performance pay data. Uses "median_q_data.dta". This is just a dataset with the median q for each start and stop date combination. This median q is constructed in the same way as the q (See 7) a)) except that instead of considering sum of tightness consider median tightness. 
+
+9) a) For those interested in constructing "median_q_data.dta" proceed as follows :
+
+i) Run "median_q_construction.m" in Matlab (uses "Q_vacancies_for_NLSY_periods.csv" see 7) a)). Creates "median_q_data.csv".
+
+ii) Run "gen_median_q_data.do" in Stata (uses "median_q_data.csv").
+
+Note : Do files above directly use already created dtas with performance pay information and union information. However, if the reader wants to extract them from the NLSY and replicate the creation of our performance pay and union variables they just need to use the do files "Extract_union.do", "Union_both_ready_analysis" and "Extract_PPJ_status".
+
+9) b) For those interested in constructing the dtas. "Bartik_diff_XXX" from scratch proceed as follows :
+
+i) Run "Create_panel_Bartik_var.do". Creates "Bartik_send_matlab.csv".
+
+ii) Run "Create_avg_Bartik.m" uses Bartik_send_matlab.csv. Creates csvs with names "XXX_diff.csv" and "XXX_lvl.csv".
+
+iii) Run "gen_avg_Bartik.do".
+
+10) Create_Dta_Ready_regressions_noStockOpt_Bonus.do : Same as 9) except that does not consider stock options and bonueses to be performance pay. 
+
+11) Create_Dta_Ready_Regressions_withWomen.do :  Same as 9) except that keep both men and women in final sample. 
