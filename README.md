@@ -40,13 +40,14 @@ Journal of Monetary Economics, Vol.97, 91-110, 2018 (Carnegie Rochester NYU Seri
 *Giulio Fella, Giovanni Gallipoli, and Jutong Pan* <br/>
 Review of Economic Dynamics, Vol.34, 183-201, 2019
 
-10. **Education Policy and Intergenerational Transfers in Equilibrium**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Education-Policy-and-Intergenerational-Transfers-in-Equilibrium), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/06/AGMV.pdf) <br/>
+10. **Education Policy and Intergenerational Transfers in Equilibrium**, [Data and Code](https://www.dropbox.com/s/t30vdm7x70vdiv4/AGMV_JPE2019-data_and_code_by_table.zip?dl=0), [Paper](https://giovannigallipoli.sites.olt.ubc.ca/files/2019/12/AGMV.pdf) <br/>
 *Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante* <br/>
 Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
 
-11. **Match Quality and Contractual Sorting**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Education-Policy-and-Intergenerational-Transfers-in-Equilibrium), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2018/06/AGMV.pdf) <br/>
-*Brant Abbott, Giovanni Gallipoli, Costas Meghir and Gianluca Violante* <br/>
-Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
+11. **Match Quality and Contractual Sorting**, [Data and Code](https://www.dropbox.com/s/1xayzu48ozcg5zw/FGY_LE2020-data_and_code_by_table.zip?dl=0), [Paper](https://giovannigallipoli.sites.olt.ubc.ca/files/2020/07/Match_Quality.pdf) <br/>
+*Joao Alfredo Galindo da Fonseca, Giovanni Gallipoli, and Yaniv Yedid-Levi* <br/>
+Labour Economics, Vol.66, October 2020 
+
 
 
 
