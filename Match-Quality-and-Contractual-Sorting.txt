@@ -44,7 +44,7 @@ viii) "Occspec_avg_unemp_COG.dta" and "Occspec_avg_unemp_MAN.dta"
 
 
 
-Steps to reproduce the samples used in the paper from raw data
+-- Steps to reproduce the samples used in the paper from raw data
 
 The do file "Main (List of DoFiles)" reports the list of do files that were used to construct the final sample. The do files used are the following : 
 
@@ -54,7 +54,7 @@ The do file "Main (List of DoFiles)" reports the list of do files that were used
 
 3) fgy_number.do : This do file generates a unique job identifier within each worker set of observations (i.e for each CASEID). This job identifier is called "fgy_number". This do file also creates industry groups. Creates dta called "fgy_number_with_occ.dta" This do file creates Coarse industry groups. 
 
-Note : there are some (infrequent) records of non-identical observations with the same individual identifier (CASEID), job number and year. This is due to occasional coding error in the NLSY raw files. The result is that after sorting by CASEID, fgynumber (constructed using job number) and year, there may be more than one unique way to sort of observations. We have noted that different computers may generate different sorting of observations when we Stata is asked to to sort by CASEID, fgynumber and year. The sorting, in turn, may affect which of these duplicate (CASEID, fgynumber, year) triplets are dropped as well as the assignment of industry groups. The samples may be marginally different because of this issue, but the occurrence of this problem is so rare that all estimates and significance level are effectively unchanged (only a few decimals might be different). 
+Note : there are very few non-identical observations with the same individual identifier (CASEID), job number and year. This is due to occasional (and infrequent) coding error in the NLSY raw files. The result is that after sorting by CASEID, fgynumber (constructed using job number) and year, there may be more than one unique way to sort observations. We have noted that different computers may generate different sorting of observations when Stata is asked to to sort by CASEID, fgynumber and year. The sorting, in turn, may affect which of these duplicate (CASEID, fgynumber, year) triplets are dropped as well as the assignment of industry groups. The samples may be marginally different because of this issue, but the occurrence of this problem is so rare that all estimates and significance level are effectively unchanged (only a few decimals might be different). 
 
 4) sampling.do : This do file creates sampling restrictions based on hours worked. Creates dta called "sampling_NLSY.dta"
 
