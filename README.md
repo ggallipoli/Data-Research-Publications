@@ -1,6 +1,6 @@
 # Data-Research-Publications
 Datasets for my research publications
-By Giovanni Gallipoli
+
 
 ### [http://giovanni-gallipoli.ca/](http://giovanni-gallipoli.ca/)
 Datasets for my research publications
