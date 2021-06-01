@@ -47,7 +47,12 @@ Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
 
 11. **Match Quality and Contractual Sorting**, [Data and Code](https://www.dropbox.com/s/1xayzu48ozcg5zw/FGY_LE2020-data_and_code_by_table.zip?dl=0), [Paper](https://giovannigallipoli.sites.olt.ubc.ca/files/2020/07/Match_Quality.pdf) <br/>
 *Joao Alfredo Galindo da Fonseca, Giovanni Gallipoli, and Yaniv Yedid-Levi* <br/>
-Labour Economics, Vol.66, October 2020 
+Labour Economics, Vol.66, October 2020
+
+12. **Sectoral Digital Intensity and GDP Growth After a Large Employment Shock**, [Data and Code](https://www.dropbox.com/XXXXXXXXXX), 
+    [Paper](XXXXXXXXXXXX) <br/>
+*Giovanni Gallipoli and Christos A. Makridis* <br/>
+Canadian Journal of Economics, Vol.XXXX, XXXX 2021
 
 
 
