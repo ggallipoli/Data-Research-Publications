@@ -49,10 +49,10 @@ Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
 *Joao Alfredo Galindo da Fonseca, Giovanni Gallipoli, and Yaniv Yedid-Levi* <br/>
 Labour Economics, Vol.66, October 2020
 
-12. **Sectoral Digital Intensity and GDP Growth After a Large Employment Shock**, [Data and Code](https://www.dropbox.com/XXXXXXXXXX), 
+12. **Sectoral Digital Intensity and GDP Growth After a Large Employment Shock: a Simple Extrapolation Exercise**, [Data and Code](https://www.dropbox.com/XXXXXXXXXX), 
     [Paper](XXXXXXXXXXXX) <br/>
 *Giovanni Gallipoli and Christos A. Makridis* <br/>
-Canadian Journal of Economics, Vol.XXXX, XXXX 2021
+Canadian Journal of Economics, Vol.XXXX, XXXX (Special Issue) 2021
 
 
 
