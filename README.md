@@ -2,7 +2,7 @@
 Datasets for my research publications
 
 
-### [http://giovanni-gallipoli.ca/](https://app.scholarsite.io/giovanni-gallipoli)
+### [https://app.scholarsite.io/giovanni-gallipoli](https://app.scholarsite.io/giovanni-gallipoli)
 Datasets for my research publications
 
 1. **Skill Dispersion and Trade Flows**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Skill-Dispersion-and-Trade-Flows), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/BGP.pdf) <br/>
