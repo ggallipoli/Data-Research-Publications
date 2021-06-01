@@ -50,7 +50,7 @@ Journal of Political Economy, Vol.127, Issue 6, 2569-2624, 2019 (lead article)
 Labour Economics, Vol.66, October 2020
 
 12. **Sectoral Digital Intensity and GDP Growth After a Large Employment Shock: a Simple Extrapolation Exercise**, [Data and Code](https://www.dropbox.com/XXXXXXXXXX), 
-    [Paper](XXXXXXXXXXXX) <br/>
+    [Paper](https://app.scholarsite.io/giovanni-gallipoli/articles/sectoral-digital-intensity-and-gdp-growth-after-a-large-employment-shock) <br/>
 *Giovanni Gallipoli and Christos A. Makridis* <br/>
 Canadian Journal of Economics, Vol.XXXX, XXXX (Special Issue) 2021
 
