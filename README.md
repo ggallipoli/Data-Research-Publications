@@ -5,7 +5,7 @@ Datasets for my research publications
 ### [https://app.scholarsite.io/giovanni-gallipoli](https://app.scholarsite.io/giovanni-gallipoli)
 Datasets for my research publications
 
-1. **Skill Dispersion and Trade Flows**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Skill-Dispersion-and-Trade-Flows), [Paper](http://giovannigallipoli.sites.olt.ubc.ca/files/2017/08/BGP.pdf) <br/>
+1. **Skill Dispersion and Trade Flows**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/master/Skill-Dispersion-and-Trade-Flows), [Paper](https://app.scholarsite.io/giovanni-gallipoli/articles/skill-dispersion-and-trade-flows) <br/>
 *Bombardini, Matilde, Giovanni Gallipoli, and Germán Pupato* <br/>
 American Economic Review, 102 (5), 2327-2348, August 2012
 
