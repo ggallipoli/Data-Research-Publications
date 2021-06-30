@@ -2,4 +2,4 @@ The data underlying Figure 4 can be obtained as follows:
 - Run the do-file gravity3_regs.do, which uses the dataset gravity_flows.dta (available in the replication package from the journal).
 - The beginning of the do-file gravity4_results.do generates the figure. The underlying data is in reg3.dta (created when running gravity3_regs.do) and corresponds to the values of the variable “estimate” for parm=="angsep".
 Estimation is at an annual frequency. Note that reg3.dta has the year-by-year estimates of all the lambdas.
-Source datasets (not copied here): LPD and union_occ -- available in Data folder.
+Source datasets: LPD and union_occ -- unavailable in the Data folder and cannot be publicly distributed by us.
