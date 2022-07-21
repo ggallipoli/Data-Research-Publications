@@ -51,7 +51,18 @@ Labour Economics, Vol.66, October 2020
 
 12. **Sectoral Digital Intensity and GDP Growth After a Large Employment Shock: a Simple Extrapolation Exercise**, [Data and Code](https://www.dropbox.com/s/jqq2hdignzdaj9d/Gallipoli_Makridis_%20CJE%202021_data%20and%20code.zip?dl=0), [Paper](https://app.scholarsite.io/giovanni-gallipoli/articles/sectoral-digital-intensity-and-gdp-growth-after-a-large-employment-shock) <br/>
 *Giovanni Gallipoli and Christos A. Makridis* <br/>
-Canadian Journal of Economics, Vol.XXXX, XXXX (Special Issue) 2021
+Canadian Journal of Economics, Vol.55, pp. 446-479 (Special Issue) 2021
+
+13. **Permanent-Income Inequality**, [Data and Code](https://www.dropbox.com/s/np3u89jcvxcnv2l/Abbott_Gallipoli_QE2022_Permanent-Income-Inequality.zip?dl=0), [Paper](https://app.scholarsite.io/giovanni-gallipoli/articles/permanent-income-inequality) <br/>
+*Brant Abbott and Giovanni Gallipoli* <br/>
+Quantitative Economics, Vol.13, pp. 1023-1060 2022
+
+14. **Comment on Unequal Growth**, [Data and Code](), [Paper]() <br/>
+*Giovanni Gallipoli* <br/>
+Journal of Monetary Economics, Vol.XX, XX-XXXX, XXXX (Carnegie Rochester NYU Series on Public Policy)
+
+
+
 
 
 
