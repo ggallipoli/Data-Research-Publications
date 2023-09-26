@@ -59,7 +59,7 @@ Quantitative Economics, Vol.13, pp. 1023-1060 2022
 
 14. **Comment on Unequal Growth**, [Data and Code](), [Paper]() <br/>
 *Giovanni Gallipoli* <br/>
-Journal of Monetary Economics, Vol.XX, XX-XXXX, XXXX (Carnegie Rochester NYU Series on Public Policy)
+Journal of Monetary Economics, Vol.133, 19-24, 2023 (Carnegie Rochester NYU Series on Public Policy)
 
 
 
