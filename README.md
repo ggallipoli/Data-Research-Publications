@@ -57,7 +57,7 @@ Canadian Journal of Economics, Vol.55, pp. 446-479 (Special Issue) 2021
 *Brant Abbott and Giovanni Gallipoli* <br/>
 Quantitative Economics, Vol.13, pp. 1023-1060 2022
 
-14. **Comment on Unequal Growth**, [Data and Code](), [Paper]() <br/>
+14. **Comment on Unequal Growth**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/ac34d5d712a909c2cae3e784c3b46acdac9e7f8c/LippiPerri_exercise), [Paper](https://app.getsphere.com/giovanni-gallipoli/articles/comments-on-unequal-growth) <br/>
 *Giovanni Gallipoli* <br/>
 Journal of Monetary Economics, Vol.133, 19-24, 2023 (Carnegie Rochester NYU Series on Public Policy)
 
