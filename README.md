@@ -61,7 +61,7 @@ Quantitative Economics, Vol.13, pp. 1023-1060 2022
 *Giovanni Gallipoli* <br/>
 Journal of Monetary Economics, Vol.133, 19-24, 2023 (Carnegie Rochester NYU Series on Public Policy)
 
-15. **Firm Heterogeneity in Skill Returns**, [Data and Code] (https://github.com/ggallipoli/Data-Research-Publications/tree/8bcd9aa07fc42217e2ddc799f6959194ca539132/replication-code%20-%20JOLE%202023%20FIRMS), [Paper](https://app.getsphere.com/giovanni-gallipoli/articles/firm-heterogeneity-in-skill-returns) <br/>
+15. **Firm Heterogeneity in Skill Returns**, [Data and Code](https://github.com/ggallipoli/Data-Research-Publications/tree/8bcd9aa07fc42217e2ddc799f6959194ca539132/replication-code%20-%20JOLE%202023%20FIRMS), [Paper](https://app.getsphere.com/giovanni-gallipoli/articles/firm-heterogeneity-in-skill-returns) <br/>
 *Michael J. Boehm, Khalil Esmkhani, Giovanni Gallipoli* <br/>
 forthcoming, Journal of Labor Economics, Vol.43, No.3, 2025 
 
